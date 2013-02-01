@@ -1,0 +1,51 @@
+.photo-wrapper {
+	margin: auto;
+	width: 160px;
+	height: 160px;
+	border-radius: 3px;
+	border: 1px black solid;
+}
+
+
+
+
+/* Custom container */
+.container-narrow {
+	margin: 0 auto;
+	max-width: 750px;
+}
+
+.container-narrow > hr {
+	margin: 0;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+	margin-top: 40px;
+	margin-right: 0;
+	margin-bottom: 30px;
+	margin-left: 0;
+	text-align: center;
+}
+
+.jumbotron h1 {
+	font-size: 72px;
+	line-height: 1;
+}
+
+.jumbotron .btn {
+	font-size: 21px;
+	padding: 14px 24px;
+}
+
+/* Supporting marketing content */
+.marketing {
+	margin-top: 30px;
+	margin-right: 0;
+	margin-bottom: 50px;
+	margin-left: 0;
+}
+
+.marketing p + h4 {
+	margin-top: 28px;
+}
