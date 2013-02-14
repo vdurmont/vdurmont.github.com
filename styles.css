@@ -31,6 +31,8 @@ body {
 .footer {
 	margin-top: 40px;
 	border-top: 1px solid #ABA7A9;
+	text-align: center;
+	padding-top: 10px;
 }
 
 .centered-links {
