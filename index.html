@@ -2,42 +2,84 @@
 	<head>
 		<title>Vincent Durmont</title>
 		<meta charset="utf-8">
-		<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet" />
+		<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap.no-icons.min.css" rel="stylesheet" />
+		<link href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet" />
 		<link href="styles.css" rel="stylesheet" />
 	</head>
 	<body>
-		<div class="container-narrow">
-			<div class="jumbotron">
+		<div id="topbar-container" class="navbar-fixed-top">
+			<div id="topbar">
+				<ul class="nav nav-pills">
+					<li class="active">
+						<a href="#me" data-toggle="tab">Home</a>
+					</li>
+					<li>
+						<a href="#projects" data-toggle="tab">Projects</a>
+					</li>
+					<li><a href="#resume" data-toggle="tab">Resume</a></li>
+					<li><a href="#contact" data-toggle="tab">Contact</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="container-narrow tab-content">
+			<div id="me" class="jumbotron tab-pane active">
 				<div class="photo-wrapper">
 					<img src="vincent_durmont.jpg" alt="Photo of Vincent Durmont" />
 				</div>
 				<h1>Vincent Durmont</h1>
-				<p class="lead">Software engineer.</p>
-				<a class="btn btn-large btn-success" href="mailto:vdurmont@gmail.com">Contact me!</a>
+				<p class="lead"><strong>Software engineer</strong><br />Information Systems Architecture, Web &amp; Mobile development</p>
+				<a class="btn btn-large btn-success" href="mailto:vdurmont@gmail.com?subject=I want to hire you!">Available for hire</a>
 			</div>
-			<hr>
-			<div class="row-fluid marketing">
-				<div class="span6">
-					<h4>Github profile</h4>
-					<p>
-						Find my open-source projects on my github profile.<br />
-						<a href="https://github.com/vdurmont">See more</a>
-					</p>
-				</div>
-				<div class="span6">
-					<h4>Plixee</h4>
-					<p>
-						Organize, achieve and share your projects in a breeze.<br />
-						<a href="http://www.plixee.com">See more</a>
-					</p>
-					<!--<h4>Resume</h4>
-					<p>
-						Learn more about me, my education and my experience by reading my resume.<br />
-						<a href="#">PDF</a> &ndash; <a href="#">HTTP</a>
-					</p>-->
+			<div id="projects" class="tab-pane">
+				<h1>My projects</h1>
+				<p>
+					You can find some of my code on my <a href="https://github.com/vdurmont">github account</a> and <a href="https://github.com/Plixee">Plixee's github account</a>.
+				</p>
+				<p>
+					I mostly work with :
+					<ul>
+						<li>Java (JEE, Spring, Maven, Hibernate...)</li>
+						<li>Javascript (Coffeescript, jQuery, Backbone.js...)</li>
+						<li>HTML5 and CSS3 (LESS, SAAS...)</li>
+					</ul>
+					But sometimes, I also play with Python, Ruby, C...
+				</p>
+			</div>
+			<div id="resume" class="tab-pane">
+				<h1>Resume</h1>
+				<p>
+					For now, you can find my resume on LinkedIn but I promise I will put a PDF version here someday :)
+				</p>
+				<div class="centered-links">
+					<div>
+						<a href="http://fr.linkedin.com/pub/vincent-durmont/a/886/929/"><i class="icon-linkedin-sign"></i> LinkedIn profile</a>
+					</div>
 				</div>
 			</div>
-			<hr>
+			<div id="contact" class="tab-pane">
+				<h1>Contact</h1>
+				<p>
+					I'll be glad to chat with you. Feel free to contact me anytime!
+				</p>
+				<div class="centered-links">
+					<div>
+						<a href="mailto:vdurmont@gmail.com"><i class="icon-envelope-alt"></i> vdurmont@gmail.com</a>
+					</div>
+					<div>
+						<a href="http://twitter.com/Dvins"><i class="icon-twitter"></i> @Dvins</a>
+					</div>
+					<div>
+						<a href="https://github.com/vdurmont"><i class="icon-github"></i> Vdurmont</a>
+					</div>
+					<div>
+						<a href="tel:+33687489592"><i class="icon-phone"></i> +33 6 87 48 95 92</a>
+					</div>
+				</div>
+			</div>
+			<div class="footer" />
+			<!-- <hr /> -->
 		</div>
+		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/js/bootstrap.min.js"></script>
 	</body>
 </html>
