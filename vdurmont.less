@@ -12,15 +12,26 @@ body {
 	margin-bottom: 70px;
 }
 
-h1 {
-	font-size: 1.9em;
-	margin: 0;
-	font-variant: small-caps;
-	color: @titleColor;
+.post-content {
+	h1 {
+		color: @titleColor;
+		font-size: 1.7em;
+	}
+	h2 {
+		color: #333;
+		font-size: 1.5em;
+	}
+	h3 {
+		font-size: 1.2em;
+	}
 }
 
 h2 {
 	color: @titleColor;
+	a, a:hover {
+		color: @titleColor;
+		text-decoration: none;
+	}
 }
 
 .caption {
@@ -34,6 +45,17 @@ h2 {
 	@media (min-width: 768px) {
 		margin-bottom: 70px;
 		padding-bottom: 70px;
+	}
+
+	h1 {
+		font-size: 1.9em;
+		margin: 0;
+		font-variant: small-caps;
+		color: @titleColor;
+		a, a:hover {
+			color: @titleColor;
+			text-decoration: none;
+		}
 	}
 }
 
@@ -66,4 +88,9 @@ h2 {
 	margin-top: 30px;
 	padding-top: 10px;
 	border-top: 1px solid @lightGrey;
+}
+
+.post-excerpt {
+	padding-bottom: 30px;
+	border-bottom: 1px solid @lightGrey;
 }
