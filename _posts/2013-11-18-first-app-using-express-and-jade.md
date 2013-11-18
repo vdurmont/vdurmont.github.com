@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Your first app with Node.js, Express.js and Jade
+date: 2013-11-18 18:41:00
 ---
 
 At Ubleam, I often need to prototype small webapps for our clients. The goal is to create a specific product in the shortest possible period of time in order to test the market on a feature.

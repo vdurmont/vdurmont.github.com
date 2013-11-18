@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Hello World, again!
+date: 2013-11-18 18:40:00
 ---
 
 Hi everyone, I'm back!
