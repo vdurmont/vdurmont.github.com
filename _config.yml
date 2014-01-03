@@ -1,3 +1,4 @@
 name: Vincent DURMONT Blog
 description: Personal blog of Vincent DURMONT
 url: http://vdurmont.github.io
+markdown: kramdown
