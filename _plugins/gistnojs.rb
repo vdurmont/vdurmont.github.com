@@ -20,7 +20,7 @@ module Fiftyfive
 <div id="gist-#{@gist_ref.gsub(/[^a-z0-9]/i,'-')}">
 <script src="#{script_uri}"></script>
 <noscript>
-<pre>#{CGI.escapeHTML(open(raw_gist_uri).read.chomp)}</pre>
+<pre>#{CGI.escapeHTML(open(raw_uri).read.chomp)}</pre>
 </noscript>
 </div>
 MARKUP
