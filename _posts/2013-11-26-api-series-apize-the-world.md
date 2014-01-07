@@ -5,6 +5,8 @@ title: API-ze the world!
 
 As I told you before in my [Hello World, again](/2013/11/04/hello-world-again.html), I love APIs and the service oriented web. This is my first post on this topic and it is the beginning of a long series. I will sometimes make technical posts giving you hints and feedback on my work with APIs. Some others, like this one, may be a little more focused on the concepts and the ecosystem.
 
+<!--more-->
+
 Let's start with a definition in order to be clear. API is the acronym for *Application Programming Interface*. It is a machine-to-machine protocol enabling any program to interact with one another and to exchange *services*. Basicaly, providing an API means providing the other developers with the ability to interact and use your service within theirs.
 
 We can already find lots of APIs: each programming language, each framework, each information system provides one. For example, if you're a Java developer, you use the Java API when you write your code and the famous Javadoc is no more than this API's documentation.

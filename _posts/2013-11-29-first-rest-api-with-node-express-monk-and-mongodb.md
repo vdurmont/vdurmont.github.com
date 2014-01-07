@@ -7,6 +7,8 @@ One of my <a href="/2013/11/18/first-app-using-express-and-jade.html">previous p
 
 In my job and my personal projects, I alternatively take the positions of frontend and backend developer. In order to separate the responsabilities of each part of the job, the best way is to define an interface. Providing a web API for a service enables us to plug in any frontend display (websites, mobile apps, etc.).
 
+<!--more-->
+
 # Technologies
 
 Here is a quick presentation of the technologies used in this post, do not hesitate to check them out:

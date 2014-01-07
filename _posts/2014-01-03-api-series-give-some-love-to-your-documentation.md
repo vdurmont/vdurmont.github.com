@@ -11,6 +11,8 @@ As a developer, I want the documentation of the APIs I use to be crystal clear, 
 
 Here are some thoughts about how to create a developer-friendly documentation that will boost the interest (and the revenues!) of your API.
 
+<!--more-->
+
 # Easy to find
 
 When a documentation is hidden in a PDF file (or worse, a .docx!) or when you have to sign up before reading it, the developer has to make an effort to find it. Most of us will give up and look for an easier solution: if I find obstacles before starting any integration, there is a great probability that my work will be harder with your product!

@@ -10,6 +10,8 @@ It's been a long time since I posted something on the internet!
 
 Between the end of my studies at INSA, my startup experience at Plixee, my relocation in [Toulouse](http://goo.gl/maps/LwIkY) and the fact that I started working for [Ubleam](http://ubleam.com), it's been an exciting but dense couple of years! 
 
+<!--more-->
+
 Whether it is at work or during my spare time, and I spend a lot of time learning and testing new technologies and frameworks. I open this blog to share some of my findings.
 
 The technologies you can expect to read about soon are Java, Spring Framework, Node.js, Angular.js, occasionaly some mobile (iOS/Android) development and even some snippets of Python or Ruby ;)

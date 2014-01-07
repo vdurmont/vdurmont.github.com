@@ -10,6 +10,8 @@ I choose not to integrate those apps directly in our main API because it would r
 
 I often develop those apps on a Node.js base because it's an easy way to get tangible results in a very short time. In this post, I will show you how to set up a basic webapp using Node.js, Express.js and Jade.
 
+<!--more-->
+
 # Technologies
 
 Let's start with a quick presentation of the technologies used in this post:
