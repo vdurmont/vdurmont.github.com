@@ -1,0 +1,8 @@
+o: ActiveSupport::Cache::Entry:@valueI"l{
+	"name": "MyApp",
+	"version": "0.0.1",
+	"private": true,
+	"dependencies": {
+		"express": "3.4.4"
+	}
+}:ET:@created_atf1389120806.2941241:@expires_in0
