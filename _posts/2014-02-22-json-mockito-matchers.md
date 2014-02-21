@@ -53,7 +53,7 @@ But when I run the test, I got this failure:
 		at com.github.vdurmont.AppTest.test_json_equals(AppTest.java:25)
 	 */
 
-This is due to the fact that `JSONObject` doesn't overrides the method `equals` so when Mockito uses the default equals matcher, it fails.
+This is due to the fact that `JSONObject` doesn't override the method `equals` so when Mockito uses the default equals matcher, it fails.
 
 In order to have a simple verification, I wrote 2 custom matchers: one for [JSONObject](http://www.json.org/javadoc/org/json/JSONObject.html) and one for [JSONArray](http://www.json.org/javadoc/org/json/JSONArray.html).
 
