@@ -123,10 +123,10 @@ Here is the custom matcher:
 
 # Matcher with arguments
 
-Now let's say we want to compare the author of the sent message with the author given in parameter of the `doStuff()` method. Here is how it works:
+Now let's say we want to compare the beginning of the author's name of the sent message with a String. Here is how it works:
 
 	@Test
-	public void doStuff_sends_a_message_from_the_given_author() {
+	public void doStuff_sends_a_message_from_an_author_whose_name_starts_with_V() {
 		// GIVEN
 		MessageService mockMessageService = mock(MessageService.class);
 		MyService service = new MyService(mockMessageService);
@@ -137,35 +137,25 @@ Now let's say we want to compare the author of the sent message with the author 
 		service.doStuff(author);
 
 		// THEN
-		verify(mockMessageService).send(authorIs(author));
+		verify(mockMessageService).send(authorNameStartsWith("v"));
 	}
 
-	public class AuthorMatcher extends ArgumentMatcher<Message> {
-		public static Message authorIs(Human author) {
-			return argThat(new AuthorMatcher(author));
+	public class AuthorNameMatcher extends ArgumentMatcher<Message> {
+		public static Message authorNameStartsWith(String startsWith) {
+			return argThat(new AuthorNameMatcher(startsWith));
 		}
 
-		private final Human expected;
+		private final String expected;
 
-		public AuthorMatcher(Human author) {
-			this.expected = author;
+		public AuthorNameMatcher(String expected) {
+			this.expected = expected;
 		}
 
 		@Override
 		public boolean matches(Object argument) {
-			if (argument == null) return false;
-			if (!(argument instanceof Message)) return false;
-
-			Message msg = (Message) argument;
-			if (expected == null) return msg.getAuthor() == null;
-
-			Human author = msg.getAuthor();
-
-			if (expected.getName() == null) return author.getName() == null;
-			if (!expected.getName().equals(author.getName())) return false;
-
-			if (expected.getGender() == null) return author.getGender() == null;
-			return expected.getGender().equals(author.getGender());
+			// TODO check null, etc.
+			String actual = ((Message) argument).getAuthor().getName().toLowerCase();
+			return actual.startsWith(expected.toLowerCase());
 		}
 	}
 
