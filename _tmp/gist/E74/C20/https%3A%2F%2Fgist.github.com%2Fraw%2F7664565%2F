@@ -1,7 +1,0 @@
-o: ActiveSupport::Cache::Entry:@valueI"ç{
-	"id": 42,
-	"title": "Wrong format for the creation date",
-	"creation": "2013-11-27T04:33:35Z",
-	"status": "OPEN",
-	"assignee": "Vincent"
-}:ET:@created_atf1389120816.495645:@expires_in0

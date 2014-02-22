@@ -1,5 +1,0 @@
-o: ActiveSupport::Cache::Entry:@valueI"çextends layout
-
-block content
-	p Happy to see you again, #{name} !
-	p I'm happy to show your reversed name: <strong>#{reversedName}</strong>!:ET:@created_atf1389120815.444084:@expires_in0

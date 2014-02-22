@@ -21,7 +21,13 @@ Here is a quick presentation of the technologies used in this post, do not hesit
 
 In this post, I will build a simple bug tracker. A bug will be defined as a title, a date of creation, a status and the name of the assignee. Here is an example:
 
-{% gist 7664565 %}
+	{
+		"id": 42,
+		"title": "Wrong format for the creation date",
+		"creation": "2013-11-27T04:33:35Z",
+		"status": "OPEN",
+		"assignee": "Vincent"
+	}
 
 We will then be able to create, read, update and delete bugs in the service.
 
@@ -29,7 +35,15 @@ We will then be able to create, read, update and delete bugs in the service.
 
 To start with, create a `package.json` file with the following dependencies and launch `npm install`.
 
-{% gist 7664483 %}
+	{
+		"name": "MyApp",
+		"version": "0.0.1",
+		"private": true,
+		"dependencies": {
+			"express": "3.4.4",
+			"monk": "0.7.1"
+		}
+	}
 
 Start a MongoDB database ([download here](http://www.mongodb.org/)) with `mongod --dbpath /tmp`.
 
@@ -42,15 +56,84 @@ We will then create the main file for our webapp. Here are the endpoints which w
 
 In order to keep our `app.js` file small and clear, we just declare the endpoints and write our business logic in `routes.js`.
 
-{% gist 7664504 %}
+	var express = require('express');
+	var routes = require('./routes.js');
+	 
+	var app = express();
+	app.use(express.bodyParser());
+	 
+	app.get('/', routes.getAll);
+	app.post('/', routes.create);
+	app.get('/:id', routes.get);
+	app.put('/:id', routes.update);
+	app.del('/:id', routes.del);
+	 
+	app.listen(3333);
+	console.log('Running on port 3333!');
 
 The file `routes.js` contains all the business logic. It starts by importing a `config.json` file which contains the database information and establishes a connexion with the database by using Monk.
 
 Then we execute the requests in the database to store, retrieve or remove the requested data.
 
-{% gist 7664549 %}
+	{
+		"host": "localhost",
+		"dbname": "example"
+	}
 
-{% gist 7664522 %}
+&nbsp;
+
+	var config = require('./config.json');
+	var monk = require('monk');
+	var db = monk(config.host+'/'+config.dbname);
+	var collection = db.get('bugs');
+	 
+	// Returns all the bugs
+	exports.getAll = function(req, res) {
+		collection.find({}, function(err, bugs){
+			if (err) res.json(500, err);
+			else res.json(bugs);
+		});
+	};
+	 
+	// Creates a bug
+	exports.create = function(req, res) {
+		var body = req.body;
+		collection.insert(body, function(err, bug){
+			if (err) res.json(500, err);
+			else res.json(201, bug);
+		});
+	};
+	 
+	// Get a bug
+	exports.get = function(req, res) {
+		var id = req.params.id;
+		collection.findById(id, function(err, bug){
+			if (err) res.json(500, err);
+			else if (bug) res.json(bug);
+			else res.json(404);
+		});
+	};
+	 
+	// Updates a bug
+	exports.update = function(req, res) {
+		var id = req.params.id;
+		var body = req.body;
+		delete body._id;
+		collection.findAndModify({_id: id}, {$set: body}, {multi:false}, function(err, bug){
+			if (err) res.json(500, err);
+			else if (bug) res.json(bug);
+			else res.json(404);
+		});
+	};
+	 
+	// Deletes a bug
+	exports.del = function(req, res) {
+		var id = req.params.id;
+		collection.remove({_id: id}, function(err){
+			if (err) res.json(500, err);
+			else res.json(204);
+		});
+	};
 
 Simply run `npm install && node app.js` and open a browser to [http://localhost:3333](http://localhost:3333). If you see an empty json array (`[]`), it's okay :)
 

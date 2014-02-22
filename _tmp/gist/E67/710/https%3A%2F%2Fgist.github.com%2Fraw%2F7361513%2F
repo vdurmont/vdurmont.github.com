@@ -1,12 +1,0 @@
-o: ActiveSupport::Cache::Entry:@valueI" doctype html5
-html
-	head
-		title #{title}
-		link(rel="stylesheet", href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css")
-	body
-		div.container(style="max-width: 800px;")
-			h1 My sample app
-			block content
-
-			footer(style="text-align:center;")
-				p Copyright © MyApp:ET:@created_atf1389120811.306109:@expires_in0
