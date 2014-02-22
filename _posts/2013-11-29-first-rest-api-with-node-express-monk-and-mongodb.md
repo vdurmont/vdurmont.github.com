@@ -12,6 +12,7 @@ In my job and my personal projects, I alternatively take the positions of fronte
 # Technologies
 
 Here is a quick presentation of the technologies used in this post, do not hesitate to check them out:
+
 * [Node.js](http://nodejs.org) is a platform built on top of Chrome javascript engine which provides a simple way to build javascript apps on the server side.
 * [Express.js](http://expressjs.com) is a lightweigth and flexible framework providing an easy way to build node-based web applications.
 * [MongoDB](http://www.mongodb.org/) is an open-source document database, the leading NoSQL database. Awesome to store JSON documents in a webapp.
@@ -48,6 +49,7 @@ To start with, create a `package.json` file with the following dependencies and 
 Start a MongoDB database ([download here](http://www.mongodb.org/)) with `mongod --dbpath /tmp`.
 
 We will then create the main file for our webapp. Here are the endpoints which will be accessible:
+
 * `GET /bugs`: returns the list of the bugs,
 * `POST /bugs`: creates a bug,
 * `GET /bugs/<id>`: returns the specified bug,
@@ -142,6 +144,7 @@ If you want to test the service, use an HTTP Client (for example, the Google Chr
 # Going further
 
 The API was really easy to set up! But there is a lot of remaining problems like:
+
 * How to validate our models?
 * How to handle the authentication?
 * How to test my API?
