@@ -1,102 +1,171 @@
-@titleColor: #556270;
-@lightGrey: #c2c2c2;
+/************************************
+GLOBAL VARIABLES AND RESETS
+************************************/
 
-body {
-	background-color: #f8f8f8;
-	font-size: 16px;
-	font-weight: 300;
+@import url(http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface);
+
+@red: #ac4142;
+@light-red: rgba(255, 255, 255, 0.5);
+@grey: #e1e1e1;
+@light-grey: #f0f0f0;
+
+html {
+	font-size: 20px;
+	font-family: "PT Sans", Helvetica, Arial, sans-serif;
 }
 
-#page {
-	max-width: 750px;
-	margin-bottom: 70px;
+body { background-color: #fff; }
+
+/************************************
+SIDEBAR
+************************************/
+
+.sidebar {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 16rem;
+	padding: 2rem 1rem;
+	background-color: @red;
+	color: @light-red;
 }
 
-.post-content {
-	h1 {
-		color: @titleColor;
-		font-size: 1.7em;
-	}
-	h2 {
-		color: #333;
-		font-size: 1.5em;
-	}
-	h3 {
-		font-size: 1.2em;
-	}
-
-	img {
-		max-width: 100%;
-		display: block;
-		margin: auto;
-	}
+.sidebar a, .sidebar a:hover {
+	color: #fff;
+	text-decoration: none;
 }
 
-h2 {
-	color: @titleColor;
-	a, a:hover {
-		color: @titleColor;
-		text-decoration: none;
-	}
-}
+/* about section */
 
-.caption {
-	margin-bottom: 30px;
-}
-
-.topbar {
-	margin-top: 20px;
-	border-bottom: solid 1px @lightGrey;
-
-	@media (min-width: 768px) {
-		margin-bottom: 70px;
-		padding-bottom: 70px;
-	}
-
-	h1 {
-		font-size: 1.9em;
-		margin: 0;
-		font-variant: small-caps;
-		color: @titleColor;
-		a, a:hover {
-			color: @titleColor;
-			text-decoration: none;
-		}
-	}
-}
-
-.navbar-toggle {
+.sidebar-about h1 {
 	margin-top: 0;
-	font-size: 1.5em;
-	color: #333;
+	font-size: 2.5rem;
+	font-family: "Abril Fatface", serif;
+	color: #fff;
 }
 
-.navbar-nav > li > a {
-	line-height: normal;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	color: #333;
-	@media (max-width: 768px) {
-		margin-left: 30px;
-	}
+.sidebar-about p a { text-decoration: underline; }
+
+
+/* links section */
+
+.sidebar-links {
+	position: absolute;
+	right: 1rem;
+	bottom: 1rem; 
+	left: 1rem;
+}
+.sidebar-links .fa { margin-right: 1rem; }
+.sidebar-links a, .sidebar-links a:hover { color: @light-red; }
+.sidebar-links a:hover { text-decoration: underline; }
+
+/************************************
+CONTENT
+************************************/
+
+/* Container */
+
+.content {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	margin-left: 19rem;
+	padding: 0 2rem;
 }
 
-.fa {
-	padding-top: 4px;
+.content a { color: @red; }
+.content a:hover { text-decoration: none; }
+
+.post-container { margin: 3rem 0; }
+
+/* Pages headers */
+
+.page-title, .page-subtitle {
+	margin: 0;
+	color: @red;
 }
 
-.navbar-toggle {
-	padding: 0;
-	color: @titleColor;
+.page-subtitle {
+	font-size: 1.2rem;
 }
+
+.page-title, .page-title a {
+	font-size: 2.5rem;
+	text-decoration: none;
+}
+.page-title a:hover { text-decoration: underline; }
+
+/* Comments */
 
 .comments {
-	margin-top: 30px;
-	padding-top: 10px;
-	border-top: 1px solid @lightGrey;
+	margin-top: 2rem;
+	padding: 1rem 0;
+	border-top: 1px solid @red;
 }
 
-.post-excerpt {
-	padding-bottom: 30px;
-	border-bottom: 1px solid @lightGrey;
+/************************************
+MIXINS
+************************************/
+
+.border-radius (@radius) {
+	-webkit-border-radius: @radius;
+	-moz-border-radius: @radius;
+	border-radius: @radius;
+
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+}
+
+/************************************
+UTILITIES
+************************************/
+
+/* Buttons */
+
+.btn-container { margin: 2rem 0; }
+
+.btn, a.btn {
+	padding: 0.8rem;
+	.border-radius(10px);
+	font-size: 0.9em;
+	background-color: @red;
+	color: #fff;
+	text-decoration: none;
+}
+
+.content img {
+	display: block;
+	max-width: 100%;
+	margin: auto;
+}
+
+/* Code */
+
+pre {
+	display: block;
+	padding: 1rem;
+	border: 1px solid @grey;
+	.border-radius(10px);
+	background-color: @light-grey;
+	font-size: 0.7rem;
+	word-break: break-all;
+	word-wrap: break-word;
+
+	code {
+		padding: 0;
+		font-size: inherit;
+		color: inherit;
+		white-space: pre-wrap;
+		background-color: transparent;
+		border: 0;
+	}
+}
+
+code {
+	padding: 2px;
+	display: inline-block;
+	font-size: 0.9rem;
+	border: 1px solid @grey;
+	background-color: @light-grey;
 }
