@@ -9,12 +9,24 @@ GLOBAL VARIABLES AND RESETS
 @grey: #e1e1e1;
 @light-grey: #f0f0f0;
 
+@sidebar-width: 16rem;
+
+@small-screens: ~"screen and (max-width: 1023px)";
+@small-screens-sidebar-height: 10rem;
+
 html {
 	font-size: 20px;
 	font-family: "PT Sans", Helvetica, Arial, sans-serif;
 }
 
-body { background-color: #fff; }
+@media @small-screens {
+	html { font-size: 12px; }
+}
+
+body {
+	margin:0;
+	background-color: #fff;
+}
 
 /************************************
 SIDEBAR
@@ -25,11 +37,24 @@ SIDEBAR
 	top: 0;
 	bottom: 0;
 	left: 0;
-	width: 16rem;
-	padding: 2rem 1rem;
+	width: @sidebar-width;
 	background-color: @red;
 	color: @light-red;
 }
+
+
+@media @small-screens {
+	.sidebar {
+		position: fixed;
+		top: 0;
+		right: 0;
+		left: 0;
+		height: @small-screens-sidebar-height;
+		width: auto;
+	}
+}
+
+.sidebar-container { padding: 2rem 1rem; }
 
 .sidebar a, .sidebar a:hover {
 	color: #fff;
@@ -47,18 +72,51 @@ SIDEBAR
 
 .sidebar-about p a { text-decoration: underline; }
 
+@media @small-screens {
+	.sidebar-about { display: block; }
+	.sidebar-about h1 { margin-bottom: 0; }
+	.sidebar-about-description { display: none; }
+}
 
 /* links section */
 
-.sidebar-links {
+
+/* Menu */
+
+.sidebar-menu {
 	position: absolute;
 	right: 1rem;
 	bottom: 1rem; 
 	left: 1rem;
 }
-.sidebar-links .fa { margin-right: 1rem; }
-.sidebar-links a, .sidebar-links a:hover { color: @light-red; }
-.sidebar-links a:hover { text-decoration: underline; }
+
+.sidebar-menu ul { padding: 0; }
+
+.sidebar-menu li {
+	list-style: none;
+}
+
+.sidebar-menu .fa { margin-right: 1.2rem; }
+.sidebar-menu a { color: @light-red; }
+.sidebar-menu a:hover { text-decoration: underline; }
+
+@media @small-screens {
+	.sidebar-menu {
+		display: block;
+		font-size: 2rem;
+	}
+
+	.sidebar-menu ul {
+		position: auto;
+		right: auto;
+		bottom: auto;
+		left: auto;
+		margin: 0;
+		text-align: center;
+	}
+	.sidebar-menu li { display: inline-block; }
+	.sidebar-menu-label { display: none; }
+}
 
 /************************************
 CONTENT
@@ -67,10 +125,17 @@ CONTENT
 /* Container */
 
 .content {
-	margin-top: 1rem;
-	margin-bottom: 1rem;
-	margin-left: 19rem;
+	margin-left: @sidebar-width+3;
+	margin-right: 4rem;
 	padding: 0 2rem;
+}
+
+@media @small-screens {
+	.content {
+		margin-top: @small-screens-sidebar-height+2;
+		margin-right: 0;
+		margin-left: 0;
+	}
 }
 
 .content a { color: @red; }
@@ -85,9 +150,7 @@ CONTENT
 	color: @red;
 }
 
-.page-subtitle {
-	font-size: 1.2rem;
-}
+.page-subtitle { font-size: 1.2rem; }
 
 .page-title, .page-title a {
 	font-size: 2.5rem;
@@ -162,10 +225,14 @@ pre {
 	}
 }
 
+@media @small-screens {
+	pre { font-size: 0.9rem; }
+}
+
 code {
 	padding: 2px;
 	display: inline-block;
-	font-size: 0.9rem;
 	border: 1px solid @grey;
+	font-size: 0.9rem;
 	background-color: @light-grey;
 }
