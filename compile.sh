@@ -1,1 +1,1 @@
-lessc -x --clean-css ./assets/css/vdurmont.less > ./assets/css/vdurmont.css
+lessc -x ./assets/css/vdurmont.less > ./assets/css/vdurmont.css
