@@ -3,7 +3,7 @@ layout: post
 title: New design based on Hyde
 ---
 
-I just refreshed the design of this site for something more colorful. The theme was inspired by <a href="http://hyde.getpoole.com">Hyde</a>, a delighful Jekyll theme by <a href="https://twitter.com/mdo">@mdo</a>.
+I just refreshed the design of this site for something more colorful. The theme was inspired by <a href="http://hyde.getpoole.com">Hyde</a>, a delightful Jekyll theme by <a href="https://twitter.com/mdo">@mdo</a>.
 
 I didn't fork directly the Hyde project because I wanted to dive in the less code to experiment some new concepts. Basing my structure on something made by one of the creator of <a href="http://getbootstrap.com">Bootstrap</a> is a good way to learn ;)
 
