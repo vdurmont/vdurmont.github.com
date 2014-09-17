@@ -6,9 +6,11 @@ Hey that's just my personal github page ;)
 
 # Installation
 
-TODO 
-
 Install less: `npm install -g less`
+
+Install bundler: `sudo gem install bundler`
+
+Launch `bundle install`
 
 # Deployment
 
