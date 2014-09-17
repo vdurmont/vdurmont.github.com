@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Browse Github with octotree
+title: Browse Github with Octotree
 ---
 
 I recently discovered a **very** useful chrome plugin called [Octotree](https://chrome.google.com/webstore/detail/octotree/bkhaagjahfmjljalopjnoealnfndnagc).
