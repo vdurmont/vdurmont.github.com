@@ -7,6 +7,8 @@ In one of my projects, I needed a reliable way to get a visitor's IP address and
 
 So I decided it would be fun to write a small webservice to do just that: [http://userinfo.io](http://userinfo.io).
 
+<!--more-->
+
 It's really simple to use: get the library from [Github](http://github.com/vdurmont/userio-js), insert it in your code and call the method:
 
     UserInfo.getInfo(function(data, err) {
