@@ -3,7 +3,7 @@ layout: post
 title: Get the client IP address and location with Javascript
 ---
 
-In one of my projects, I needed a reliable way to get a visitor's IP address in Javascript, without a server. There is a wonderful [thread](http://stackoverflow.com/questions/391979/get-client-ip-using-just-javascript) on StackOverflow which gives a lot of solutions but when I tried them, they were either not working (400/500 errors) or not returning the data I needed.
+In one of my projects, I needed a reliable way to get a visitor's IP address and his location in Javascript, without a server. There is a wonderful [thread](http://stackoverflow.com/questions/391979/get-client-ip-using-just-javascript) on StackOverflow which gives a lot of solutions but when I tried them, they were either not working (400/500 errors) or not returning the data I needed.
 
 So I decided it would be fun to write a small webservice to do just that: [http://userinfo.io](http://userinfo.io).
 
