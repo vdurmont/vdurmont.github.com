@@ -9,7 +9,7 @@ So I decided it would be fun to write a small webservice to do just that: [http:
 
 <!--more-->
 
-It's really simple to use: get the library from [Github](http://github.com/vdurmont/userio-js), insert it in your code and call the method:
+It's really simple to use: get the library from [Github](http://github.com/vdurmont/userinfo-js), insert it in your code and call the method:
 
     UserInfo.getInfo(function(data, err) {
         if (err) {
@@ -19,4 +19,4 @@ It's really simple to use: get the library from [Github](http://github.com/vdurm
         }
     });
 
-Check it out on [Github](http://github.com/vdurmont/userio-js) and do not hesitate to send me your remarks!
+Check it out on [Github](http://github.com/vdurmont/userinfo-js) and do not hesitate to send me your remarks!
