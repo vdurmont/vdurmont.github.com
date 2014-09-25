@@ -47,7 +47,7 @@ To make it available as an AMD module, we just have to encapsulate the code in a
       if (typeof define === 'function' && define.amd) {
         define(factory);   // If we use a dependency mechanism, our method can be injected
       } else {
-        root.Hello = factory();    // If we don't, let's fallback on a global variable
+        root.Hello = factory();    // If we don't, let's fallback to a global variable
       }
     }(this, function() {
       return function() {
@@ -67,7 +67,7 @@ To make it available as an AMD module, we just have to encapsulate the code in a
       }
     }));
 
-The usage stays really simple and the developper can choose to rename your module (here, I renamed Hello to Hi):
+The usage is still really simple and the developper can choose to rename your module (here, I renamed Hello to Hi):
 
     requirejs.config({
       "paths": {
