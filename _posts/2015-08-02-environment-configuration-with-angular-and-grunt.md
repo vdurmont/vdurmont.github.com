@@ -5,13 +5,11 @@ title: Environment configuration with Angular and Grunt
 
 When I write an Angular application, I usually create a *constant* [module](https://docs.angularjs.org/api/ng/type/angular.Module) to store my environment variables:
 
-```
-angular.module("myApp").constant("Config", {
-  API_URL: "http://localhost:8080/",
-  GITHUB_CLIENT_ID: "xxxxxxxxxxxxxxx",
-  ...
-});
-```
+    angular.module("myApp").constant("Config", {
+      API_URL: "http://localhost:8080/",
+      GITHUB_CLIENT_ID: "xxxxxxxxxxxxxxx",
+      ...
+    });
 
 I can then inject my config anywhere in the application and use those variables.
 
@@ -25,81 +23,75 @@ In this post I will give you an easy way to achieve this, using [grunt-replace](
 
 Modify the values by putting `@@` followed by the key name.
 
-```
-angular.module("myApp").constant("Config", {
-  API_URL: "@@API_URL",
-  GITHUB_CLIENT_ID: "@@GITHUB_CLIENT_ID",
-  ...
-});
-```
+    angular.module("myApp").constant("Config", {
+      API_URL: "@@API_URL",
+      GITHUB_CLIENT_ID: "@@GITHUB_CLIENT_ID",
+      ...
+    });
+
 ## Create a config file for each environment
 
 For example, if I have a `development` and a `production` environment:
 
 **./src/config/development.json**
 
-```
-{
-  API_URL: "http://localhost:8080/",
-  GITHUB_CLIENT_ID: "xxxxxxxxxxxxxxx",
-  ...
-}
-```
+    {
+      API_URL: "http://localhost:8080/",
+      GITHUB_CLIENT_ID: "xxxxxxxxxxxxxxx",
+      ...
+    }
 
 **./src/config/production.json**
 
-```
-{
-  API_URL: "http://api.myapp.com/",
-  GITHUB_CLIENT_ID: "yyyyyyyyyyyyyyy",
-  ...
-}
-```
+    {
+      API_URL: "http://api.myapp.com/",
+      GITHUB_CLIENT_ID: "yyyyyyyyyyyyyyy",
+      ...
+    }
 
 ## Add `grunt-replace` to your Gruntfile
 
 Here are the interesting parts of the `Gruntfile.js`:
 
-```
-module.exports = function (grunt) {
-  // Method used to generate a config environment
-  var getConfig = function (configName) {
-    return {
-      options: {
-        patterns: [{
-          json: grunt.file.readJSON("./src/config/" + configName + ".json")
-        }]
-      },
-      files: [{
-        expand: true,
-        flatten: true,
-        // Here "dist/js/app.min.js" is a minified script with my whole application
-        src: ["dist/js/app.min.js"],
-        dest: "dist/js/"
-      }]
+    module.exports = function (grunt) {
+      // Method used to generate a config environment
+      var getConfig = function (configName) {
+        return {
+          options: {
+            patterns: [{
+              json: grunt.file.readJSON("./src/config/" + configName + ".json")
+            }]
+          },
+          files: [{
+            expand: true,
+            flatten: true,
+            // Here "dist/js/app.min.js" is a minified script with my whole application
+            src: ["dist/js/app.min.js"],
+            dest: "dist/js/"
+          }]
+        };
+      };
+
+      grunt.initConfig({
+        // Config...
+
+        // Replace the configuration according to the profile
+        replace: {
+          development: getConfig("development"),
+          production: getConfig("production")
+        },
+
+        // Config...
+      });
+
+      // Load the NPM tasks
+      grunt.loadNpmTasks("grunt-replace");
+      // ...
+
+      // Register your tasks
+      grunt.registerTask("default", [..., "replace:development", ...]);
+      grunt.registerTask("production", [..., "replace:production", ...]);
     };
-  };
-
-  grunt.initConfig({
-    // Config...
-
-    // Replace the configuration according to the profile
-    replace: {
-      development: getConfig("development"),
-      production: getConfig("production")
-    },
-
-    // Config...
-  });
-
-  // Load the NPM tasks
-  grunt.loadNpmTasks("grunt-replace");
-  // ...
-
-  // Register your tasks
-  grunt.registerTask("default", [..., "replace:development", ...]);
-  grunt.registerTask("production", [..., "replace:production", ...]);
-```
 
 ## Run!
 
