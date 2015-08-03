@@ -1,5 +1,2 @@
 source 'https://rubygems.org'
 gem 'github-pages'
-gem 'activesupport'
-gem 'therubyracer'
-gem 'jekyll-less'
