@@ -26,7 +26,7 @@ When I integrate an API, I often have specific needs and I want to be able to fi
 - Providing a search engine (e.g. [Facebook](https://developers.facebook.com/))
 - Building a one-page reference that enables a simple &#8984;+F (e.g. [Stripe](https://stripe.com/docs/api), see below)
 
-![Stripe on-page doc](/assets/img/api-doc-stripe-onepage.png)
+![Stripe on-page doc](/assets/blog/20140103/api-doc-stripe-onepage.png)
 
 # Structure: Overview, quickstart, guides and reference
 
@@ -51,7 +51,7 @@ A good solution is to make a quick list of the main things that the developer wi
 
 For example, [Paymill](https://www.paymill.com/en-gb/documentation-3/) provides a great example of [quickstart](https://www.paymill.com/en-gb/documentation-3/) on its documentation homepage.
 
-![Paymill quickstart](/assets/img/api-doc-paymill-quickstart.png)
+![Paymill quickstart](/assets/blog/20140103/api-doc-paymill-quickstart.png)
 
 ## Guides
 
@@ -65,13 +65,13 @@ The reference contains the full list of your objects and methods. It is the bori
 
 # An example is worth more than a long speech
 
-It is important that you explain in details how to use each method of the API. We often have a lot of optional parameters that may be useful to some of your users but reading [that kind of table](/assets/img/api-doc-facebook-table.png) is really boring. Most of the time we just need to use the basic request so the best way of understanding is reading an example.
+It is important that you explain in details how to use each method of the API. We often have a lot of optional parameters that may be useful to some of your users but reading [that kind of table](/assets/blog/20140103/api-doc-facebook-table.png) is really boring. Most of the time we just need to use the basic request so the best way of understanding is reading an example.
 
 And don't forget that when a developer learns your API, he is most likely already overwhelmed by the information so do not force him to learn a new language: write your example in [the most commonly used languages](http://adambard.com/blog/top-github-languages-for-2013-so-far/).
 
 I like how Paymill enables you to switch your language via a vertical tab in its devcenter.
 
-![Paymill](/assets/img/api-doc-paymill-language-switch.png)
+![Paymill](/assets/blog/20140103/api-doc-paymill-language-switch.png)
 
 # Do not forget the edge cases
 

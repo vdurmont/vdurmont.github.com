@@ -5,7 +5,7 @@ title: Userinfo.io Java & Javascript libraries
 
 As I told you [a few days ago](http://vincent-durmont.com/2014/09/20/get-the-client-ip-address-and-location-with-javascript.html), I launched a new service called [userinfo.io](http://userinfo.io) that helps you get the geolocation information of your user in no time.
 
-![Userinfo.io](/assets/img/userinfo-io-screenshot.png)
+![Userinfo.io](/assets/blog/20141003/userinfo-io-screenshot.png)
 
 <!--more-->
 

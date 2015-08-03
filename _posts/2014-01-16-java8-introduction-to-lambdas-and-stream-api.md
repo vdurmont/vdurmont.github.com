@@ -9,7 +9,7 @@ The talk was given by [Jose Paumard](http://twitter.com/josepaumard). The subjec
 
 <!--more-->
 
-![Toulouse JUG](/assets/img/java8-takeout-from-toulousejug-photo.jpg)
+![Toulouse JUG](/assets/blog/20140116/java8-takeout-from-toulousejug-photo.jpg)
 
 You can find the whole presentation in french [here](http://fr.slideshare.net/jpaumard/jdk-8-lambdas-streams-collectos-bretagne-tour).
 
@@ -101,8 +101,8 @@ Let's write it with interfaces:
 And implement our example with the Stream API:
 
 	List<Vehicle> vehicles = ....; // Not null and not empty :)
-	
-	Integer sum = 
+
+	Integer sum =
 	vehicles.stream() // We create a stream on the collection
 		// Only keep when 1 wheel or more
 			.filter(v -> v.getNumWheels() > 0)

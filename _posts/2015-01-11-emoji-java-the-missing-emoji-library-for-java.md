@@ -5,7 +5,7 @@ title: emoji-java — The missing emoji library for Java
 
 A few weeks ago, I released a first version of *emoji-java* on maven central! The lightweight library helps you easily handle emojis in your code.
 
-![Emojis](/assets/img/emojis-line.png)
+![Emojis](/assets/blog/20150111/emojis-line.png)
 
 Find [the code on Github](https://github.com/vdurmont/emoji-java) and spread the world ;)
 

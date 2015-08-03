@@ -41,12 +41,12 @@ Then create your main javascript file `app.js`. After importing express, this fi
 
 	var express = require('express');
 	var app = express();
-	 
+
 	app.get('/', function(req, res){
 		var name  = req.query.name != null ? req.query.name : "World";
 		res.send('Hello, '+name+'!');
 	});
-	 
+
 	app.listen(3333);
 	console.log('Running on port 3333!');
 
@@ -54,11 +54,11 @@ Then create your main javascript file `app.js`. After importing express, this fi
 
 Simply run `npm install && node app.js` and open a browser to [http://localhost:3333](http://localhost:3333).
 
-![Hello World screenshot](/assets/img/express-jade-first-app-screenshot_step1.png)
+![Hello World screenshot](/assets/blog/20131118/express-jade-first-app-screenshot_step1.png)
 
 You can also try with a parameter [http://localhost:3333?name=Vincent](http://localhost:3333?name=Vincent).
 
-![Hello Vincent screenshot](/assets/img/express-jade-first-app-screenshot_step1_bis.png)
+![Hello Vincent screenshot](/assets/blog/20131118/express-jade-first-app-screenshot_step1_bis.png)
 
 # Add Jade template engine
 
@@ -88,11 +88,11 @@ We also render a different page according to the presence or the lack of the `na
 
 	var express = require('express');
 	var app = express();
-	 
+
 	// Jade
 	app.set('views', __dirname+'/views');
 	app.set('view engine', 'jade');
-	 
+
 	app.get('/', function(req, res){
 		var name = req.query.name;
 		if (name == null)
@@ -107,7 +107,7 @@ We also render a different page according to the presence or the lack of the `na
 				reversedName: name.split("").reverse().join("")
 			});
 	});
-	 
+
 	app.listen(3333);
 	console.log('Running on port 3333!');
 
@@ -122,14 +122,14 @@ We created 3 jade files in the `views` directory. `layout.jade` contains the com
 			div.container(style="max-width: 800px;")
 				h1 My sample app
 				block content
-	 
+
 				footer(style="text-align:center;")
 					p Copyright © MyApp
 
 &nbsp;
 
 	extends layout
-	 
+
 	block content
 		p Hello again World.
 		p The current date is: #{date}
@@ -144,7 +144,7 @@ We created 3 jade files in the `views` directory. `layout.jade` contains the com
 &nbsp;
 
 	extends layout
-	 
+
 	block content
 		p Happy to see you again, #{name} !
 		p I'm happy to show your reversed name: <strong>#{reversedName}</strong>!
@@ -153,11 +153,11 @@ You will now get the following page:
 
 For [http://localhost:3333](http://localhost:3333):
 
-![Hello World screenshot 2](/assets/img/express-jade-first-app-screenshot_step2.png)
+![Hello World screenshot 2](/assets/blog/20131118/express-jade-first-app-screenshot_step2.png)
 
 For [http://localhost:3333?name=Vincent](http://localhost:3333?name=Vincent)
 
-![Hello Vincent screenshot 2](/assets/img/express-jade-first-app-screenshot_step2_bis.png)
+![Hello Vincent screenshot 2](/assets/blog/20131118/express-jade-first-app-screenshot_step2_bis.png)
 
 # Going further
 
