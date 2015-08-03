@@ -1,6 +1,8 @@
 name: Vincent DURMONT Blog
 description: Personal blog of Vincent DURMONT
 url: http://vdurmont.github.io
-markdown: kramdown
+highlighter: pygments
+markdown: redcarpet
+redcarpet:
+  input: GMF
 excerpt_separator: <!--more-->
-gems: ['jekyll-less']
