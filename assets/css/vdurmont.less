@@ -15,7 +15,7 @@ GLOBAL VARIABLES AND RESETS
 @small-screens-sidebar-height: 10rem;
 
 html {
-	font-size: 20px;
+	font-size: 16px;
 	font-family: "PT Sans", Helvetica, Arial, sans-serif;
 }
 
@@ -40,6 +40,7 @@ SIDEBAR
 	width: @sidebar-width;
 	background-color: @red;
 	color: @light-red;
+	font-size: 1.2rem;
 }
 
 
@@ -158,6 +159,15 @@ CONTENT
 }
 .page-title a:hover { text-decoration: underline; }
 
+.post-container .page-title,
+.post-container .page-title a {
+	font-size: 1.5rem;
+}
+
+.post-container .page-subtitle { font-size: 1.2rem; }
+
+.secondary-title { margin-top: 3rem; }
+
 /* Comments */
 
 .comments {
@@ -165,6 +175,8 @@ CONTENT
 	padding: 1rem 0;
 	border-top: 1px solid @red;
 }
+
+.home-emojis { font-size: 1.5rem; }
 
 /************************************
 MIXINS
