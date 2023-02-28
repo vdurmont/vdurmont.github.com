@@ -1,19 +1,17 @@
-vdurmont.github.com
-===================
+# vdurmont.github.com
 
 Hey that's just my personal github page ;)
 
+# How-to
 
-# Installation
+Install:
 
-Install less: `npm install -g less`
+```bash
+npm install
+```
 
-Install bundler: `sudo gem install bundler`
+Run:
 
-Launch `bundle install`
-
-# Deployment
-
-Compile the assets: `./compile.sh`
-
-Run the server: `./run.sh`
+```bash
+npx @11ty/eleventy --serve --port=8081
+```
