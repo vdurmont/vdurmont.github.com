@@ -7,6 +7,7 @@
  * This work is licensed under the Creative Commons CC0 1.0 Universal License
  */
 
+code,
 code[class*="language-"],
 pre[class*="language-"] {
   font-family: "Fira Mono", Menlo, Monaco, "Lucida Console", "Courier New",
@@ -45,6 +46,7 @@ pre[class*="language-"] {
 }
 
 /* Inline code */
+:not(pre) > code,
 :not(pre) > code[class*="language-"] {
   padding: 0.1em;
   border-radius: 0.3em;
