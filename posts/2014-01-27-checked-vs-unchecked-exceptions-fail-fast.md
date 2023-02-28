@@ -17,7 +17,9 @@ For those in the back of the class who forgot their Java basics, here is a quick
 
 A **checked exception** inherits from `java.lang.Exception` and is part of the signature of the methods throwing it:
 
-`public void someMethod() throws Exception { /* Do stuff */ }`
+```java
+public void someMethod() throws Exception { /* Do stuff */ }
+```
 
 Common examples of checked exceptions are: `java.io.IOException`, `java.sql.SQLException`, etc.
 
@@ -39,59 +41,67 @@ All I want to do is let the exception bubble up to the top of the program where 
 
 The `HashMap` class is, in my opinion, not failing fast enought. Here is an illustration:
 
-    public class MapFailsSlowly {
-    	public static void main(String[] args) {
-    		Map<String, String> map = new HashMap<>();
-    		map.put("foo", "my foo string");
-    		map.put("bar", "my bar string");
+```java
+public class MapFailsSlowly {
+  public static void main(String[] args) {
+    Map<String, String> map = new HashMap<>();
+    map.put("foo", "my foo string");
+    map.put("bar", "my bar string");
 
-    		// Code code code
+    // Code code code
 
-    		String value = map.get("baz");
-    		System.out.println("\"baz\" value's length: " + value.length());
-    	}
-    }
+    String value = map.get("baz");
+    System.out.println("\"baz\" value's length: " + value.length());
+  }
+}
+```
 
 Running this code will throw a `NullPointerException` with this stacktrace:
 
-    Exception in thread "main" java.lang.NullPointerException
-    	at com.ligati.failfast.MapFailsSlowly.main(MapFailsSlowly.java:20)
-    	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-    	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-    	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-    	at java.lang.reflect.Method.invoke(Method.java:606)
-    	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:120)
+```txt
+Exception in thread "main" java.lang.NullPointerException
+  at com.ligati.failfast.MapFailsSlowly.main(MapFailsSlowly.java:20)
+  at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+  at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+  at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+  at java.lang.reflect.Method.invoke(Method.java:606)
+  at com.intellij.rt.execution.application.AppMain.main(AppMain.java:120)
+```
 
 Awesome. This really helps me. It tells me that my value is null, but it is not the line where I got it so the context is not ideal. And its a really simple code, imagine that I got `value` from another method, I would fail in a portion of the code that has nothing to do with the retrieval of the value.
 
 I'd prefer this implementation:
 
-    public class FastFailingMap<K, V> extends HashMap<K, V> {
-    	@Override
-    	public V get(Object key) {
-    		V value = super.get(key);
-    		if (value == null)
-    			throw new KeyNotFoundException(key);
-    		return value;
-    	}
+```java
+public class FastFailingMap<K, V> extends HashMap<K, V> {
+  @Override
+  public V get(Object key) {
+    V value = super.get(key);
+    if (value == null)
+      throw new KeyNotFoundException(key);
+    return value;
+  }
 
-    	public static class KeyNotFoundException extends IllegalStateException {
-    		public KeyNotFoundException(Object key) {
-    			super("The key '" + key + "' is not present in the map.");
-    		}
-    	}
+  public static class KeyNotFoundException extends IllegalStateException {
+    public KeyNotFoundException(Object key) {
+      super("The key '" + key + "' is not present in the map.");
     }
+  }
+}
+```
 
 When running the previous code with a `FastFailingMap` instead of a `HashMap`, I obtain the following exception.
 
-    Exception in thread "main" com.ligati.failfast.FastFailingMap$KeyNotFoundException: The key 'baz' is not present in the map.
-    	at com.ligati.failfast.FastFailingMap.get(FastFailingMap.java:10)
-    	at com.ligati.failfast.MapFailsFast.main(MapFailsFast.java:16)
-    	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-    	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-    	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-    	at java.lang.reflect.Method.invoke(Method.java:606)
-    	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:120)
+```txt
+Exception in thread "main" com.ligati.failfast.FastFailingMap$KeyNotFoundException: The key 'baz' is not present in the map.
+  at com.ligati.failfast.FastFailingMap.get(FastFailingMap.java:10)
+  at com.ligati.failfast.MapFailsFast.main(MapFailsFast.java:16)
+  at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+  at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+  at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+  at java.lang.reflect.Method.invoke(Method.java:606)
+  at com.intellij.rt.execution.application.AppMain.main(AppMain.java:120)
+```
 
 It is much better: the code fails exactly when it tries to access the unknown entry and also provide a clear error message which will help to solve the problem.
 

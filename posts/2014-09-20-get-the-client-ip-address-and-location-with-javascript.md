@@ -13,12 +13,14 @@ So I decided it would be fun to write a small webservice to do just that: [http:
 
 It's really simple to use: get the library from [Github](http://github.com/vdurmont/userinfo-js), insert it in your code and call the method:
 
-    UserInfo.getInfo(function(data, err) {
-        if (err) {
-            // Do something with the error
-        } else {
-            // Do something with the data
-        }
-    });
+```js
+UserInfo.getInfo(function (data, err) {
+  if (err) {
+    // Do something with the error
+  } else {
+    // Do something with the data
+  }
+});
+```
 
 Check it out on [Github](http://github.com/vdurmont/userinfo-js) and do not hesitate to send me your remarks!

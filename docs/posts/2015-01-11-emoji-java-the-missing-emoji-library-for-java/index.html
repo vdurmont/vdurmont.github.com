@@ -22,7 +22,7 @@
       
 <p><a href="/">&laquo; Back</a></p>
 
-<p class="blog-date">January 11, 2014</p>
+<p class="blog-date">January 11, 2015</p>
 <h1 class="blog-title">emoji-java — The missing emoji library for Java</h1>
 <p>A few weeks ago, I released a first version of <em>emoji-java</em> on maven central! The lightweight library helps you easily handle emojis in your code.</p>
 <p><img src="/assets/blog/20150111/emojis-line.png" alt="Emojis"></p>
@@ -30,20 +30,11 @@
 <!--more-->
 <p>Some quick examples:</p>
 <h3>Convert a string with unicode emojis to an html representation</h3>
-<p>String str = &quot;An 😀awesome 😃string with a few 😉emojis!&quot;;
-String result = EmojiParser.parseToHtml(myString);
-System.out.println(myString);
-// Prints:
-// &quot;An 😀awesome 😃string with a few 😉emojis!&quot;</p>
+<pre class="language-java"><code class="language-java"><span class="token class-name">String</span> str <span class="token operator">=</span> <span class="token string">"An 😀awesome 😃string with a few 😉emojis!"</span><span class="token punctuation">;</span><br><span class="token class-name">String</span> result <span class="token operator">=</span> <span class="token class-name">EmojiParser</span><span class="token punctuation">.</span><span class="token function">parseToHtml</span><span class="token punctuation">(</span>myString<span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>myString<span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token comment">// Prints:</span><br><span class="token comment">// "An &amp;#128512;awesome &amp;#128515;string with a few &amp;#128521;emojis!"</span></code></pre>
 <h3>Convert a string with aliases to unicode emojis</h3>
-<p>String str = &quot;An :grinning:awesome :smiley:string 😄with a few :wink:emojis!&quot;;
-String result = EmojiParser.parseToUnicode(myString);
-System.out.println(myString);
-// Prints:
-// &quot;An 😀awesome 😃string 😄with a few 😉emojis!&quot;</p>
+<pre class="language-java"><code class="language-java"><span class="token class-name">String</span> str <span class="token operator">=</span> <span class="token string">"An :grinning:awesome :smiley:string &amp;#128516;with a few :wink:emojis!"</span><span class="token punctuation">;</span><br><span class="token class-name">String</span> result <span class="token operator">=</span> <span class="token class-name">EmojiParser</span><span class="token punctuation">.</span><span class="token function">parseToUnicode</span><span class="token punctuation">(</span>myString<span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>myString<span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token comment">// Prints:</span><br><span class="token comment">// "An 😀awesome 😃string 😄with a few 😉emojis!"</span></code></pre>
 <h3>Browse the emojis by tags</h3>
-<p>List<Emoji> emojis = EmojiManager.getForTag(&quot;happy&quot;);
-// Iterate over the emojis!</p>
+<pre class="language-java"><code class="language-java"><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Emoji</span><span class="token punctuation">></span></span> emojis <span class="token operator">=</span> <span class="token class-name">EmojiManager</span><span class="token punctuation">.</span><span class="token function">getForTag</span><span class="token punctuation">(</span><span class="token string">"happy"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token comment">// Iterate over the emojis!</span></code></pre>
 <p>The complete documentation is on <a href="https://github.com/vdurmont/emoji-java">Github</a> an pull requests are welcome :)</p>
 
 

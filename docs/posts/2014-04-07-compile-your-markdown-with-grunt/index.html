@@ -31,51 +31,14 @@
 <!--more-->
 <p><em>grunt-markdown</em> is a lightweight <a href="http://gruntjs.com/">Grunt</a> module that enables you to compile markdown to HTML.</p>
 <p>My file structure looks like it:</p>
-<p>./
-Gruntfile.js
-package.json
-file1.md
-file2.md
-file3.md
-...
-html/
-file1.html
-file2.html
-file3.html
-...</p>
+<pre class="language-bash"><code class="language-bash">./<br>  Gruntfile.js<br>  package.json<br>  file1.md<br>  file2.md<br>  file3.md<br>  <span class="token punctuation">..</span>.<br>  html/<br>    file1.html<br>    file2.html<br>    file3.html<br>    <span class="token punctuation">..</span>.</code></pre>
 <p>The <code>package.json</code> is:</p>
-<p>{
-&quot;name&quot;: &quot;mydocumentation&quot;,
-&quot;private&quot;: true,
-&quot;version&quot;: &quot;0.0.1&quot;,
-&quot;description&quot;: &quot;My documentation.&quot;,
-&quot;author&quot;: &quot;Vincent DURMONT <a href="mailto:vdurmont@gmail.com">vdurmont@gmail.com</a>&quot;,
-&quot;devDependencies&quot;: {
-&quot;grunt&quot;: &quot;0.4.4&quot;,
-&quot;grunt-markdown&quot;: &quot;0.5.0&quot;
-}
-}</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><br>  <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"mydocumentation"</span><span class="token punctuation">,</span><br>  <span class="token property">"private"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><br>  <span class="token property">"version"</span><span class="token operator">:</span> <span class="token string">"0.0.1"</span><span class="token punctuation">,</span><br>  <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"My documentation."</span><span class="token punctuation">,</span><br>  <span class="token property">"author"</span><span class="token operator">:</span> <span class="token string">"Vincent DURMONT &lt;vdurmont@gmail.com>"</span><span class="token punctuation">,</span><br>  <span class="token property">"devDependencies"</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>    <span class="token property">"grunt"</span><span class="token operator">:</span> <span class="token string">"0.4.4"</span><span class="token punctuation">,</span><br>    <span class="token property">"grunt-markdown"</span><span class="token operator">:</span> <span class="token string">"0.5.0"</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
 <p>Don't forget to run <code>npm install</code> in order to retrieve the dependencies.</p>
 <p>Then, I simply defined a task in the <code>Gruntfile.js</code>:</p>
-<p>module.exports = function (grunt) {
-grunt.initConfig({
-pkg: grunt.file.readJSON('package.json'),
-markdown: {
-all: {
-files: [{
-expand: true,
-src: './*.md',
-dest: 'html/',
-ext: '.html'
-}]
-}
-}
-});</p>
-<p>grunt.loadNpmTasks('grunt-markdown');
-grunt.registerTask('default', ['markdown:all']);
-};</p>
+<pre class="language-js"><code class="language-js">module<span class="token punctuation">.</span><span class="token function-variable function">exports</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">grunt</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  grunt<span class="token punctuation">.</span><span class="token function">initConfig</span><span class="token punctuation">(</span><span class="token punctuation">{</span><br>    <span class="token literal-property property">pkg</span><span class="token operator">:</span> grunt<span class="token punctuation">.</span>file<span class="token punctuation">.</span><span class="token function">readJSON</span><span class="token punctuation">(</span><span class="token string">"package.json"</span><span class="token punctuation">)</span><span class="token punctuation">,</span><br>    <span class="token literal-property property">markdown</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>      <span class="token literal-property property">all</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>        <span class="token literal-property property">files</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>          <span class="token punctuation">{</span><br>            <span class="token literal-property property">expand</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><br>            <span class="token literal-property property">src</span><span class="token operator">:</span> <span class="token string">"./*.md"</span><span class="token punctuation">,</span><br>            <span class="token literal-property property">dest</span><span class="token operator">:</span> <span class="token string">"html/"</span><span class="token punctuation">,</span><br>            <span class="token literal-property property">ext</span><span class="token operator">:</span> <span class="token string">".html"</span><span class="token punctuation">,</span><br>          <span class="token punctuation">}</span><span class="token punctuation">,</span><br>        <span class="token punctuation">]</span><span class="token punctuation">,</span><br>      <span class="token punctuation">}</span><span class="token punctuation">,</span><br>    <span class="token punctuation">}</span><span class="token punctuation">,</span><br>  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>  grunt<span class="token punctuation">.</span><span class="token function">loadNpmTasks</span><span class="token punctuation">(</span><span class="token string">"grunt-markdown"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>  grunt<span class="token punctuation">.</span><span class="token function">registerTask</span><span class="token punctuation">(</span><span class="token string">"default"</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">"markdown:all"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
 <p>Finally, a simple:</p>
-<p>grunt</p>
+<pre class="language-bash"><code class="language-bash">grunt</code></pre>
 <p>in the root directory will generate all my HTML files. Easy!</p>
 <p>Check out <a href="https://github.com/treasonx/grunt-markdown">grunt-markdown on Github</a>.</p>
 

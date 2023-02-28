@@ -28,41 +28,18 @@
 <p>To solve this problem, I published a small application that enables you to manipulate your environment directly from your configuration files: <strong><a href="https://github.com/vdurmont/ebenv">ebenv</a></strong>.</p>
 <!--more-->
 <p>On one of my most recent projects, here is the type of configuration file I use:</p>
-<p>myproject.aws.access_key=AAAAAAAAAAAAAAAAAAAA
-myproject.aws.secret_key=AAAAAAAAAAAAAAAAAAAA</p>
-<p>myproject.db.password=AAAAAAAAAAAAAAAAAAAA
-myproject.db.show_sql=false
-myproject.db.type=MYSQL
-myproject.db.url=jdbc:mysql://localhost:3306/myproject
-myproject.db.username=root</p>
-<p>myproject.files.bucket=/tmp/myprojectfiles
-myproject.files.type=LOCAL</p>
-<p>myproject.github.client_id=AAAAAAAAAAAAAAAAAAAA
-myproject.github.client_secret=AAAAAAAAAAAAAAAAAAAA</p>
-<p>myproject.mandrill.enabled=true
-myproject.mandrill.api_key=AAAAAAAAAAAAAAAAAAAA</p>
-<p>myproject.url.api=http://localhost:9997
-myproject.url.static=http://localhost:9998
-myproject.url.website=http://localhost:9999</p>
-<p># 30 minutes
-myproject.worker.user.delay=1800000</p>
+<pre class="language-txt"><code class="language-txt">myproject.aws.access_key=AAAAAAAAAAAAAAAAAAAA<br>myproject.aws.secret_key=AAAAAAAAAAAAAAAAAAAA<br><br>myproject.db.password=AAAAAAAAAAAAAAAAAAAA<br>myproject.db.show_sql=false<br>myproject.db.type=MYSQL<br>myproject.db.url=jdbc:mysql://localhost:3306/myproject<br>myproject.db.username=root<br><br>myproject.files.bucket=/tmp/myprojectfiles<br>myproject.files.type=LOCAL<br><br>myproject.github.client_id=AAAAAAAAAAAAAAAAAAAA<br>myproject.github.client_secret=AAAAAAAAAAAAAAAAAAAA<br><br>myproject.mandrill.enabled=true<br>myproject.mandrill.api_key=AAAAAAAAAAAAAAAAAAAA<br><br>myproject.url.api=http://localhost:9997<br>myproject.url.static=http://localhost:9998<br>myproject.url.website=http://localhost:9999<br><br># 30 minutes<br>myproject.worker.user.delay=1800000</code></pre>
 <p>Everytime I set up a new environment I have to use the web interface to add the variables one by one. That's a lot of copy/paste. Probably a job for a robot ;)</p>
 <p>The <a href="http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3.html">ElasticBeanstalk client</a> enables us to define the environment variables with a command:</p>
-<p>eb setenv keyA=valA keyB=valB keyC=valC</p>
+<pre class="language-bash"><code class="language-bash">eb setenv <span class="token assign-left variable">keyA</span><span class="token operator">=</span>valA <span class="token assign-left variable">keyB</span><span class="token operator">=</span>valB <span class="token assign-left variable">keyC</span><span class="token operator">=</span>valC</code></pre>
 <p>It is still too long to write this command line and that is why I created <strong><a href="https://github.com/vdurmont/ebenv">ebenv</a></strong>.</p>
 <h3>Installation</h3>
 <p>Simple one-liner ;)</p>
-<p>npm install -g ebenv</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> <span class="token parameter variable">-g</span> ebenv</code></pre>
 <h3>Export AWS config to a file</h3>
-<p>ebenv export myfile.json
-ebenv export myfile.yml
-ebenv export myfile.properties
-ebenv export --format=json myfile</p>
+<pre class="language-bash"><code class="language-bash">ebenv <span class="token builtin class-name">export</span> myfile.json<br>ebenv <span class="token builtin class-name">export</span> myfile.yml<br>ebenv <span class="token builtin class-name">export</span> myfile.properties<br>ebenv <span class="token builtin class-name">export</span> <span class="token parameter variable">--format</span><span class="token operator">=</span>json myfile</code></pre>
 <h3>Write a file to the AWS config</h3>
-<p>ebenv import myfile.json
-ebenv import myfile.yml
-ebenv import myfile.properties
-ebenv import --format=json myfile</p>
+<pre class="language-bash"><code class="language-bash">ebenv <span class="token function">import</span> myfile.json<br>ebenv <span class="token function">import</span> myfile.yml<br>ebenv <span class="token function">import</span> myfile.properties<br>ebenv <span class="token function">import</span> <span class="token parameter variable">--format</span><span class="token operator">=</span>json myfile</code></pre>
 <p>Try it out!</p>
 <p><a class="btn btn-primary" href="https://github.com/vdurmont/ebenv">Github repo: vdurmont/ebenv</a></p>
 

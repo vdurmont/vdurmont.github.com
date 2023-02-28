@@ -15,23 +15,31 @@ The Mac dashboard doesn't provide a UTC clock widget so I decided to create one!
 
 Open a Terminal on your Mac and go to the dashboard widgets directory:
 
-    cd /Library/Widgets
+```bash
+cd /Library/Widgets
+```
 
 Locate the "World Clock" widget and explore the package:
 
-    cd World\ Clock.wdgt
+```bash
+cd World\ Clock.wdgt
+```
 
 Open the javascript file with your favorite editor:
 
-    subl WorldClock.js
+```bash
+subl WorldClock.js
+```
 
 Locate the "Europe" line (should be around line 48) and add an entry for GMT/UTC:
 
+```js
     ...
     var Europe = [
       {city:'GMT/UTC', offset:0, timezone:'UTC', id:"2647937"},
       {city:'Amsterdam', offset:120, timezone:'Europe/Amsterdam', id:"2759794"},
     ...
+```
 
 Save the file and open the dashboard. Add a clock widget and you should now have the option for a GMT/UTC city :)
 

@@ -19,59 +19,69 @@ _grunt-markdown_ is a lightweight [Grunt](http://gruntjs.com/) module that enabl
 
 My file structure looks like it:
 
-    ./
-        Gruntfile.js
-        package.json
-        file1.md
-        file2.md
-        file3.md
-        ...
-        html/
-            file1.html
-            file2.html
-            file3.html
-            ...
+```bash
+./
+  Gruntfile.js
+  package.json
+  file1.md
+  file2.md
+  file3.md
+  ...
+  html/
+    file1.html
+    file2.html
+    file3.html
+    ...
+```
 
 The `package.json` is:
 
-    {
-      "name": "mydocumentation",
-      "private": true,
-      "version": "0.0.1",
-      "description": "My documentation.",
-      "author": "Vincent DURMONT <vdurmont@gmail.com>",
-      "devDependencies": {
-        "grunt": "0.4.4",
-        "grunt-markdown": "0.5.0"
-      }
-    }
+```json
+{
+  "name": "mydocumentation",
+  "private": true,
+  "version": "0.0.1",
+  "description": "My documentation.",
+  "author": "Vincent DURMONT <vdurmont@gmail.com>",
+  "devDependencies": {
+    "grunt": "0.4.4",
+    "grunt-markdown": "0.5.0"
+  }
+}
+```
 
 Don't forget to run `npm install` in order to retrieve the dependencies.
 
 Then, I simply defined a task in the `Gruntfile.js`:
 
-    module.exports = function (grunt) {
-      grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json'),
-        markdown: {
-          all: {
-            files: [{
-              expand: true,
-              src: './*.md',
-              dest: 'html/',
-              ext: '.html'
-            }]
-          }
-        }
-      });
+```js
+module.exports = function (grunt) {
+  grunt.initConfig({
+    pkg: grunt.file.readJSON("package.json"),
+    markdown: {
+      all: {
+        files: [
+          {
+            expand: true,
+            src: "./*.md",
+            dest: "html/",
+            ext: ".html",
+          },
+        ],
+      },
+    },
+  });
 
-      grunt.loadNpmTasks('grunt-markdown');
-      grunt.registerTask('default', ['markdown:all']);
-    };
+  grunt.loadNpmTasks("grunt-markdown");
+  grunt.registerTask("default", ["markdown:all"]);
+};
+```
 
 Finally, a simple:
 
-    grunt
+```bash
+grunt
+```
 
 in the root directory will generate all my HTML files. Easy!
 

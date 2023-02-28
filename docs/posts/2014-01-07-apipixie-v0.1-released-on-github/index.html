@@ -29,21 +29,9 @@
 <!--more-->
 <h1>How to use it?</h1>
 <p>After including the library in your project, you just have to annotate your model with <code>@APIEntity</code> and <code>@APIId</code>:</p>
-<p>@APIEntity
-public class Message {
-private Long id;
-private String text;</p>
-<p>// Getters and setters
-}</p>
+<pre class="language-java"><code class="language-java"><span class="token annotation punctuation">@APIEntity</span><br><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Message</span> <span class="token punctuation">{</span><br>  <span class="token keyword">private</span> <span class="token class-name">Long</span> id<span class="token punctuation">;</span><br>  <span class="token keyword">private</span> <span class="token class-name">String</span> text<span class="token punctuation">;</span><br><br>    <span class="token comment">// Getters and setters</span><br><span class="token punctuation">}</span></code></pre>
 <p>You can then directly connect to the distant API!</p>
-<p>// Create an APIPixie instance
-APIPixie pixie = new APIPixie(&quot;http://api.mydistantservice.com&quot;);</p>
-<p>// Retrieve an APIService for your object
-APIService<Message> msgService = pixie.getService(Message.class);</p>
-<p>// Start communicating with the distant API
-Message msg = msgService.get(42L);</p>
-<p>// Now do stuff with the object!
-String text = msg.getText();</p>
+<pre class="language-java"><code class="language-java">  <span class="token comment">// Create an APIPixie instance</span><br>  <span class="token class-name">APIPixie</span> pixie <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">APIPixie</span><span class="token punctuation">(</span><span class="token string">"http://api.mydistantservice.com"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>  <span class="token comment">// Retrieve an APIService for your object</span><br>  <span class="token class-name">APIService</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Message</span><span class="token punctuation">></span></span> msgService <span class="token operator">=</span> pixie<span class="token punctuation">.</span><span class="token function">getService</span><span class="token punctuation">(</span><span class="token class-name">Message</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>  <span class="token comment">// Start communicating with the distant API</span><br>  <span class="token class-name">Message</span> msg <span class="token operator">=</span> msgService<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">42L</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>  <span class="token comment">// Now do stuff with the object!</span><br>  <span class="token class-name">String</span> text <span class="token operator">=</span> msg<span class="token punctuation">.</span><span class="token function">getText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>That's it! You just saved a precious time :)</p>
 <p>You can find more information and code snippets on <a href="https://github.com/vdurmont/apipixie">the Github project</a>.</p>
 <h1>Coming soon</h1>

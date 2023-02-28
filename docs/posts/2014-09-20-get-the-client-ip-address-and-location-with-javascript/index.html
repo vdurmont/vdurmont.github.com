@@ -28,13 +28,7 @@
 <p>So I decided it would be fun to write a small webservice to do just that: <a href="http://userinfo.io">http://userinfo.io</a>.</p>
 <!--more-->
 <p>It's really simple to use: get the library from <a href="http://github.com/vdurmont/userinfo-js">Github</a>, insert it in your code and call the method:</p>
-<p>UserInfo.getInfo(function(data, err) {
-if (err) {
-// Do something with the error
-} else {
-// Do something with the data
-}
-});</p>
+<pre class="language-js"><code class="language-js">UserInfo<span class="token punctuation">.</span><span class="token function">getInfo</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">data<span class="token punctuation">,</span> err</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">if</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token comment">// Do something with the error</span><br>  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span><br>    <span class="token comment">// Do something with the data</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>Check it out on <a href="http://github.com/vdurmont/userinfo-js">Github</a> and do not hesitate to send me your remarks!</p>
 
 

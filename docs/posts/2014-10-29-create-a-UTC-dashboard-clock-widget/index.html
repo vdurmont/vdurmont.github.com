@@ -29,17 +29,13 @@
 <p>The Mac dashboard doesn't provide a UTC clock widget so I decided to create one!</p>
 <!--more-->
 <p>Open a Terminal on your Mac and go to the dashboard widgets directory:</p>
-<p>cd /Library/Widgets</p>
+<pre class="language-bash"><code class="language-bash"><span class="token builtin class-name">cd</span> /Library/Widgets</code></pre>
 <p>Locate the &quot;World Clock&quot; widget and explore the package:</p>
-<p>cd World\ Clock.wdgt</p>
+<pre class="language-bash"><code class="language-bash"><span class="token builtin class-name">cd</span> World<span class="token punctuation">\</span> Clock.wdgt</code></pre>
 <p>Open the javascript file with your favorite editor:</p>
-<p>subl WorldClock.js</p>
+<pre class="language-bash"><code class="language-bash">subl WorldClock.js</code></pre>
 <p>Locate the &quot;Europe&quot; line (should be around line 48) and add an entry for GMT/UTC:</p>
-<p>...
-var Europe = [
-{city:'GMT/UTC', offset:0, timezone:'UTC', id:&quot;2647937&quot;},
-{city:'Amsterdam', offset:120, timezone:'Europe/Amsterdam', id:&quot;2759794&quot;},
-...</p>
+<pre class="language-js"><code class="language-js">    <span class="token operator">...</span><br>    <span class="token keyword">var</span> Europe <span class="token operator">=</span> <span class="token punctuation">[</span><br>      <span class="token punctuation">{</span><span class="token literal-property property">city</span><span class="token operator">:</span><span class="token string">'GMT/UTC'</span><span class="token punctuation">,</span> <span class="token literal-property property">offset</span><span class="token operator">:</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token literal-property property">timezone</span><span class="token operator">:</span><span class="token string">'UTC'</span><span class="token punctuation">,</span> <span class="token literal-property property">id</span><span class="token operator">:</span><span class="token string">"2647937"</span><span class="token punctuation">}</span><span class="token punctuation">,</span><br>      <span class="token punctuation">{</span><span class="token literal-property property">city</span><span class="token operator">:</span><span class="token string">'Amsterdam'</span><span class="token punctuation">,</span> <span class="token literal-property property">offset</span><span class="token operator">:</span><span class="token number">120</span><span class="token punctuation">,</span> <span class="token literal-property property">timezone</span><span class="token operator">:</span><span class="token string">'Europe/Amsterdam'</span><span class="token punctuation">,</span> <span class="token literal-property property">id</span><span class="token operator">:</span><span class="token string">"2759794"</span><span class="token punctuation">}</span><span class="token punctuation">,</span><br>    <span class="token operator">...</span></code></pre>
 <p>Save the file and open the dashboard. Add a clock widget and you should now have the option for a GMT/UTC city :)</p>
 <p><img src="/assets/blog/20141029/utc-clock-widget-option.png" alt="UTC clock widget option"></p>
 
