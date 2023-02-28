@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>Vincent Durmont</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="/assets/css/vdurmont.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/assets/css/prism-hopscotch.css"
+    />
+  </head>
+  <body>
+    <div class="page">
+      <h1 class="title"><a href="/">Vincent Durmont</a></h1>
+      
+<p><a href="/">&laquo; Back</a></p>
+
+<p class="blog-date">January 11, 2014</p>
+<h1 class="blog-title">emoji-java — The missing emoji library for Java</h1>
+<p>A few weeks ago, I released a first version of <em>emoji-java</em> on maven central! The lightweight library helps you easily handle emojis in your code.</p>
+<p><img src="/assets/blog/20150111/emojis-line.png" alt="Emojis"></p>
+<p>Find <a href="https://github.com/vdurmont/emoji-java">the code on Github</a> and spread the world ;)</p>
+<!--more-->
+<p>Some quick examples:</p>
+<h3>Convert a string with unicode emojis to an html representation</h3>
+<p>String str = &quot;An 😀awesome 😃string with a few 😉emojis!&quot;;
+String result = EmojiParser.parseToHtml(myString);
+System.out.println(myString);
+// Prints:
+// &quot;An 😀awesome 😃string with a few 😉emojis!&quot;</p>
+<h3>Convert a string with aliases to unicode emojis</h3>
+<p>String str = &quot;An :grinning:awesome :smiley:string 😄with a few :wink:emojis!&quot;;
+String result = EmojiParser.parseToUnicode(myString);
+System.out.println(myString);
+// Prints:
+// &quot;An 😀awesome 😃string 😄with a few 😉emojis!&quot;</p>
+<h3>Browse the emojis by tags</h3>
+<p>List<Emoji> emojis = EmojiManager.getForTag(&quot;happy&quot;);
+// Iterate over the emojis!</p>
+<p>The complete documentation is on <a href="https://github.com/vdurmont/emoji-java">Github</a> an pull requests are welcome :)</p>
+
+
+    </div>
+  </body>
+</html>

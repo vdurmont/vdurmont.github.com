@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>Vincent Durmont</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="/assets/css/vdurmont.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/assets/css/prism-hopscotch.css"
+    />
+  </head>
+  <body>
+    <div class="page">
+      <h1 class="title"><a href="/">Vincent Durmont</a></h1>
+      
+<p><a href="/">&laquo; Back</a></p>
+
+<p class="blog-date">September 24, 2014</p>
+<h1 class="blog-title">How to create an AMD module?</h1>
+<p>When I was writing the javascript library for <a href="http://userinfo.io">userinfo.io</a>, I wanted anyone to be able to use it easily.</p>
+<p>Most of the developers simply include the scripts in their pages:</p>
+<p><script type="text/javascript" src="myscript.js"></script></p>
+<p>But when you are writing more important javascript projects, it is frequent to use a dependency mechanism such as <a href="http://requirejs.org/">requirejs</a>, which is based on the <a href="https://github.com/amdjs/amdjs-api/wiki/AMD">AMD API</a>.<br>
+Instead of assigning your module to a global variable, you can define an AMD module which will be imported in the project under the name the developer will choose.</p>
+<!--more-->
+<p>Let's say that my module <code>Hello</code> has 2 methods: <code>print</code> and <code>hasPrint</code>.</p>
+<p>var Hello = function() {
+var done = false;
+return {
+print: function(name) {
+if (!name) {
+name = &quot;World&quot;;
+}
+console.log(&quot;Hello &quot;+name+&quot;!&quot;);
+done = true;
+},
+hasPrint: function() {
+return done;
+}
+}
+};</p>
+<p>I would use it this way:</p>
+<p>var h = new Hello();
+console.log(h.hasPrint()); // false
+h.print(); // Hello World!
+console.log(h.hasPrint()); // true
+h.print(&quot;Vincent&quot;); // Hello Vincent!</p>
+<p>To make it available as an AMD module, we just have to encapsulate the code in a define function:</p>
+<p>(function (root, factory) {
+if (typeof define === 'function' &amp;&amp; define.amd) {
+define(factory);   // If we use a dependency mechanism, our method can be injected
+} else {
+root.Hello = factory();    // If we don't, let's fallback to a global variable
+}
+}(this, function() {
+return function() {
+var done = false;
+return {
+print: function(name) {
+if (!name) {
+name = &quot;World&quot;;
+}
+console.log(&quot;Hello &quot;+name+&quot;!&quot;);
+done = true;
+},
+hasPrint: function() {
+return done;
+}
+}
+}
+}));</p>
+<p>The usage is still really simple and the developper can choose to rename your module (here, I renamed Hello to Hi):</p>
+<p>requirejs.config({
+&quot;paths&quot;: {
+&quot;Hi&quot;: &quot;./hello-amd&quot;
+}
+});
+require(['Hi'], function(Hi) {
+var h = new Hi();
+console.log(h.hasPrint()); // false
+h.print(); // Hello World!
+console.log(h.hasPrint()); // true
+h.print(&quot;Vincent&quot;); // Hello Vincent!
+});</p>
+<p>By adding this tiny amount of code, you can now provide you library to those who use AMD which is priceless :)</p>
+<p>You can find the full code of this example <a href="https://gist.github.com/vdurmont/518197dbe0714053e0ca">on this gist</a>.</p>
+<p>You can find more information on the dedicated page of the <a href="http://requirejs.org/docs/whyamd.html">website of requirejs</a>.</p>
+
+
+    </div>
+  </body>
+</html>

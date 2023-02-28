@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>Vincent Durmont</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="/assets/css/vdurmont.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/assets/css/prism-hopscotch.css"
+    />
+  </head>
+  <body>
+    <div class="page">
+      <h1 class="title"><a href="/">Vincent Durmont</a></h1>
+      
+<p><a href="/">&laquo; Back</a></p>
+
+<p class="blog-date">November 29, 2013</p>
+<h1 class="blog-title">First REST API with Node, Express.js, Monk and MongoDB</h1>
+<p>One of my <a href="/2013/11/18/first-app-using-express-and-jade.html">previous posts</a> presented how to quickly build a Node-based webapp with a templating system. Today, let's use the same technology stack to build our first REST Web API.</p>
+<p>In my job and my personal projects, I alternatively take the positions of frontend and backend developer. In order to separate the responsabilities of each part of the job, the best way is to define an interface. Providing a web API for a service enables us to plug in any frontend display (websites, mobile apps, etc.).</p>
+<!--more-->
+<h1>Technologies</h1>
+<p>Here is a quick presentation of the technologies used in this post, do not hesitate to check them out:</p>
+<ul>
+<li><a href="http://nodejs.org">Node.js</a> is a platform built on top of Chrome javascript engine which provides a simple way to build javascript apps on the server side.</li>
+<li><a href="http://expressjs.com">Express.js</a> is a lightweigth and flexible framework providing an easy way to build node-based web applications.</li>
+<li><a href="http://www.mongodb.org/">MongoDB</a> is an open-source document database, the leading NoSQL database. Awesome to store JSON documents in a webapp.</li>
+<li><a href="https://github.com/LearnBoost/monk">Monk</a> is a tiny wrapper built on top of <a href="">MongoSkin</a> which provides an abstraction layer to access a MongoDB from Node.</li>
+</ul>
+<h1>Scenario</h1>
+<p>In this post, I will build a simple bug tracker. A bug will be defined as a title, a date of creation, a status and the name of the assignee. Here is an example:</p>
+<p>{
+&quot;id&quot;: 42,
+&quot;title&quot;: &quot;Wrong format for the creation date&quot;,
+&quot;creation&quot;: &quot;2013-11-27T04:33:35Z&quot;,
+&quot;status&quot;: &quot;OPEN&quot;,
+&quot;assignee&quot;: &quot;Vincent&quot;
+}</p>
+<p>We will then be able to create, read, update and delete bugs in the service.</p>
+<h1>Set up our express app</h1>
+<p>To start with, create a <code>package.json</code> file with the following dependencies and launch <code>npm install</code>.</p>
+<p>{
+&quot;name&quot;: &quot;MyApp&quot;,
+&quot;version&quot;: &quot;0.0.1&quot;,
+&quot;private&quot;: true,
+&quot;dependencies&quot;: {
+&quot;express&quot;: &quot;3.4.4&quot;,
+&quot;monk&quot;: &quot;0.7.1&quot;
+}
+}</p>
+<p>Start a MongoDB database (<a href="http://www.mongodb.org/">download here</a>) with <code>mongod --dbpath /tmp</code>.</p>
+<p>We will then create the main file for our webapp. Here are the endpoints which will be accessible:</p>
+<ul>
+<li><code>GET /bugs</code>: returns the list of the bugs,</li>
+<li><code>POST /bugs</code>: creates a bug,</li>
+<li><code>GET /bugs/&lt;id&gt;</code>: returns the specified bug,</li>
+<li><code>PUT /bugs/&lt;id&gt;</code>: updates and returns the specified bug,</li>
+<li><code>DELETE /bugs/&lt;id&gt;</code>: deletes the specified bug</li>
+</ul>
+<p>In order to keep our <code>app.js</code> file small and clear, we just declare the endpoints and write our business logic in <code>routes.js</code>.</p>
+<p>var express = require('express');
+var routes = require('./routes.js');</p>
+<p>var app = express();
+app.use(express.bodyParser());</p>
+<p>app.get('/', routes.getAll);
+app.post('/', routes.create);
+app.get('/:id', routes.get);
+app.put('/:id', routes.update);
+app.del('/:id', routes.del);</p>
+<p>app.listen(3333);
+console.log('Running on port 3333!');</p>
+<p>The file <code>routes.js</code> contains all the business logic. It starts by importing a <code>config.json</code> file which contains the database information and establishes a connexion with the database by using Monk.</p>
+<p>Then we execute the requests in the database to store, retrieve or remove the requested data.</p>
+<p>{
+&quot;host&quot;: &quot;localhost&quot;,
+&quot;dbname&quot;: &quot;example&quot;
+}</p>
+<p> </p>
+<p>var config = require('./config.json');
+var monk = require('monk');
+var db = monk(config.host+'/'+config.dbname);
+var collection = db.get('bugs');</p>
+<p>// Returns all the bugs
+exports.getAll = function(req, res) {
+collection.find({}, function(err, bugs){
+if (err) res.json(500, err);
+else res.json(bugs);
+});
+};</p>
+<p>// Creates a bug
+exports.create = function(req, res) {
+var body = req.body;
+collection.insert(body, function(err, bug){
+if (err) res.json(500, err);
+else res.json(201, bug);
+});
+};</p>
+<p>// Get a bug
+exports.get = function(req, res) {
+var id = req.params.id;
+collection.findById(id, function(err, bug){
+if (err) res.json(500, err);
+else if (bug) res.json(bug);
+else res.json(404);
+});
+};</p>
+<p>// Updates a bug
+exports.update = function(req, res) {
+var id = req.params.id;
+var body = req.body;
+delete body._id;
+collection.findAndModify({_id: id}, {$set: body}, {multi:false}, function(err, bug){
+if (err) res.json(500, err);
+else if (bug) res.json(bug);
+else res.json(404);
+});
+};</p>
+<p>// Deletes a bug
+exports.del = function(req, res) {
+var id = req.params.id;
+collection.remove({_id: id}, function(err){
+if (err) res.json(500, err);
+else res.json(204);
+});
+};</p>
+<p>Simply run <code>npm install &amp;&amp; node app.js</code> and open a browser to <a href="http://localhost:3333">http://localhost:3333</a>. If you see an empty json array (<code>[]</code>), it's okay :)</p>
+<p>If you want to test the service, use an HTTP Client (for example, the Google Chrome extension <a href="https://chrome.google.com/webstore/detail/xhr-poster/akdbimilobjkfhgamdhneckaifceicen">XHR Poster</a> is perfect for testing an API).</p>
+<h1>Going further</h1>
+<p>The API was really easy to set up! But there is a lot of remaining problems like:</p>
+<ul>
+<li>How to validate our models?</li>
+<li>How to handle the authentication?</li>
+<li>How to test my API?</li>
+<li>Etc.</li>
+</ul>
+<p><a href="http://github.com/vdurmont/express-monk-mongodb-example" class="btn btn-primary">Download the code of this example</a></p>
+
+
+    </div>
+  </body>
+</html>

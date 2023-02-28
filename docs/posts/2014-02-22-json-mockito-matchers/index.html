@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>Vincent Durmont</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="/assets/css/vdurmont.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/assets/css/prism-hopscotch.css"
+    />
+  </head>
+  <body>
+    <div class="page">
+      <h1 class="title"><a href="/">Vincent Durmont</a></h1>
+      
+<p><a href="/">&laquo; Back</a></p>
+
+<p class="blog-date">February 22, 2014</p>
+<h1 class="blog-title">JSON Mockito matchers</h1>
+<p>Yesterday, I wrote about <a href="http://vincent-durmont.com/2014/02/20/custom-mockito-matchers-why-and-how.html">custom Mockito matchers</a> and this article is an example of a real usage of these matchers. In my code, I often use wrapper services that call distant APIs. The service builds a <a href="http://www.json.org/javadoc/org/json/JSONObject.html">JSONObject</a> that will be sent to the server so I need to make sure that it is correct. In order to do that, I need a custom JSON Mockito matcher.</p>
+<!--more-->
+<p>The class <code>UserService</code> will use the class <code>ApiWrapper</code> in order to create a user on a distant account server. Here is the first test I wrote:</p>
+<p>@Test
+public void test_user_is_posted_to_distant_server() {
+// GIVEN
+ApiWrapper apiWrapper = mock(ApiWrapper.class);
+UserService userService = new UserService(apiWrapper);</p>
+<p>User user = new User();
+user.setEmail(&quot;vdurmont@gmail.com&quot;);
+user.setName(&quot;Vincent DURMONT&quot;);</p>
+<p>// WHEN
+userService.create(user);</p>
+<p>// THEN
+JSONObject json = new JSONObject();
+json.put(&quot;email&quot;, user.getEmail());
+json.put(&quot;name&quot;, user.getName());</p>
+<p>verify(apiWrapper).post(json);
+}</p>
+<p>But when I run the test, I got this failure:</p>
+<p>Argument(s) are different! Wanted:
+apiWrapper.post(
+{&quot;email&quot;:&quot;vdurmont@gmail.com&quot;,&quot;name&quot;:&quot;Vincent DURMONT&quot;}
+);
+-&gt; at com.github.vdurmont.AppTest.test_user_is_posted_to_distant_server(AppTest.java:34)
+Actual invocation has different arguments:
+apiWrapper.post(
+{&quot;email&quot;:&quot;vdurmont@gmail.com&quot;,&quot;name&quot;:&quot;Vincent DURMONT&quot;}
+);
+-&gt; at com.github.vdurmont.service.UserService.create(UserService.java:18)</p>
+<p>/*
+I got this failure:</p>
+<p>java.lang.AssertionError
+at org.junit.Assert.fail(Assert.java:86)
+at org.junit.Assert.assertTrue(Assert.java:41)
+at org.junit.Assert.assertTrue(Assert.java:52)
+at com.github.vdurmont.AppTest.test_json_equals(AppTest.java:25)
+*/</p>
+<p>This is due to the fact that <code>JSONObject</code> doesn't override the method <code>equals</code> so when Mockito uses the default equals matcher, it fails.</p>
+<p>In order to have a simple verification, I wrote 2 custom matchers: one for <a href="http://www.json.org/javadoc/org/json/JSONObject.html">JSONObject</a> and one for <a href="http://www.json.org/javadoc/org/json/JSONArray.html">JSONArray</a>.</p>
+<p>You can <a href="https://github.com/vdurmont/json-mockito-matchers">find the code on github</a>.</p>
+
+
+    </div>
+  </body>
+</html>

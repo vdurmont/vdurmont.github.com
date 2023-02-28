@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>Vincent Durmont</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="/assets/css/vdurmont.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/assets/css/prism-hopscotch.css"
+    />
+  </head>
+  <body>
+    <div class="page">
+      <h1 class="title"><a href="/">Vincent Durmont</a></h1>
+      
+<p><a href="/">&laquo; Back</a></p>
+
+<p class="blog-date">November 19, 2013</p>
+<h1 class="blog-title">Your first app with Node.js, Express.js and Jade</h1>
+<p>At Ubleam, I often need to prototype small webapps for our clients. The goal is to create a specific product in the shortest possible period of time in order to test the market on a feature.</p>
+<p>I choose not to integrate those apps directly in our main API because it would require too much work to meet the quality of service I expect: response times, stress tests, graphic integration in our services, etc. I prefer to build small and flexible apps and invest time and efforts to integrate them when we feel the market is ready.</p>
+<p>I often develop those apps on a Node.js base because it's an easy way to get tangible results in a very short time. In this post, I will show you how to set up a basic webapp using Node.js, Express.js and Jade.</p>
+<!--more-->
+<h1>Technologies</h1>
+<p>Let's start with a quick presentation of the technologies used in this post:</p>
+<ul>
+<li><a href="http://nodejs.org">Node.js</a> is a platform built on top of Chrome javascript engine which provides a simple way to build javascript apps on the server side.</li>
+<li><a href="http://expressjs.com">Express.js</a> is a lightweigth and flexible framework providing an easy way to build node-based web applications.</li>
+<li><a href="http://jade-lang.com/">Jade</a> is a template engine built for node for producing XML/HTML files. It provides an indentation-based clean and readable syntax, along with a few helpers and filters.</li>
+</ul>
+<h1>Requirements</h1>
+<p>In order to make the following code work, you must have installed <code>node</code> and <code>npm</code> on your computer.</p>
+<h1>Set up a basic express app</h1>
+<p>To start with, create a <code>package.json</code> file. It describes your app and its dependencies:</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><br>  <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"MyApp"</span><span class="token punctuation">,</span><br>  <span class="token property">"version"</span><span class="token operator">:</span> <span class="token string">"0.0.1"</span><span class="token punctuation">,</span><br>  <span class="token property">"private"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><br>  <span class="token property">"dependencies"</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>    <span class="token property">"express"</span><span class="token operator">:</span> <span class="token string">"3.4.4"</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>Then create your main javascript file <code>app.js</code>. After importing express, this file creates an app and listens to get requests on the path <code>/</code>. We also give the possibility to provide a <code>name</code> query parameter in order to personalize our response.</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">var</span> express <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"express"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token keyword">var</span> app <span class="token operator">=</span> <span class="token function">express</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>app<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">var</span> name <span class="token operator">=</span> req<span class="token punctuation">.</span>query<span class="token punctuation">.</span>name <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">?</span> req<span class="token punctuation">.</span>query<span class="token punctuation">.</span>name <span class="token operator">:</span> <span class="token string">"World"</span><span class="token punctuation">;</span><br>  res<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token string">"Hello, "</span> <span class="token operator">+</span> name <span class="token operator">+</span> <span class="token string">"!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>app<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token number">3333</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Running on port 3333!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>Simply run <code>npm install &amp;&amp; node app.js</code> and open a browser to <a href="http://localhost:3333">http://localhost:3333</a>.</p>
+<p><img src="/assets/blog/20131118/express-jade-first-app-screenshot_step1.png" alt="Hello World screenshot"></p>
+<p>You can also try with a parameter <a href="http://localhost:3333?name=Vincent">http://localhost:3333?name=Vincent</a>.</p>
+<p><img src="/assets/blog/20131118/express-jade-first-app-screenshot_step1_bis.png" alt="Hello Vincent screenshot"></p>
+<h1>Add Jade template engine</h1>
+<p>The previous page is quite awesome but we can do better ;)<br>
+Imagine that the parameter is a database id and that the page would entirely change its content according to the given id.
+We could write HTML in the response but our code would quickly become ugly. That's when Jade rescues us!</p>
+<p>Jade provides us a really simple way to write our HTML page template and to inject an object with our variables.</p>
+<p>Let's add Jade to our dependencies:</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><br>  <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"MyApp"</span><span class="token punctuation">,</span><br>  <span class="token property">"version"</span><span class="token operator">:</span> <span class="token string">"0.0.1"</span><span class="token punctuation">,</span><br>  <span class="token property">"private"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><br>  <span class="token property">"dependencies"</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>    <span class="token property">"express"</span><span class="token operator">:</span> <span class="token string">"3.4.4"</span><span class="token punctuation">,</span><br>    <span class="token property">"jade"</span><span class="token operator">:</span> <span class="token string">"0.35.0"</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>(Don't forget to run <code>npm install</code> to update the dependencies!)</p>
+<p>We can now update our <code>app.js</code> file to indicate that express has now to use jade as a template engine.</p>
+<p>We also render a different page according to the presence or the lack of the <code>name</code> parameter.</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">var</span> express <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"express"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token keyword">var</span> app <span class="token operator">=</span> <span class="token function">express</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br><span class="token comment">// Jade</span><br>app<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">"views"</span><span class="token punctuation">,</span> __dirname <span class="token operator">+</span> <span class="token string">"/views"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>app<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">"view engine"</span><span class="token punctuation">,</span> <span class="token string">"jade"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>app<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">var</span> name <span class="token operator">=</span> req<span class="token punctuation">.</span>query<span class="token punctuation">.</span>name<span class="token punctuation">;</span><br>  <span class="token keyword">if</span> <span class="token punctuation">(</span>name <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span><br>    res<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token string">"world"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><br>      <span class="token literal-property property">title</span><span class="token operator">:</span> <span class="token string">"MyApp for the world"</span><span class="token punctuation">,</span><br>      <span class="token literal-property property">date</span><span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><br>    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token keyword">else</span><br>    res<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token string">"user"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><br>      <span class="token literal-property property">title</span><span class="token operator">:</span> <span class="token string">"MyApp for the you"</span><span class="token punctuation">,</span><br>      <span class="token literal-property property">name</span><span class="token operator">:</span> name<span class="token punctuation">,</span><br>      <span class="token literal-property property">reversedName</span><span class="token operator">:</span> name<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">reverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">,</span><br>    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>app<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token number">3333</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Running on port 3333!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>We created 3 jade files in the <code>views</code> directory. <code>layout.jade</code> contains the common structure and styles of the app. <code>world.jade</code> and <code>user.jade</code> extend the layout and define a specific content.</p>
+<pre><code>doctype html5
+html
+  head
+    title #{title}
+    link(rel=&quot;stylesheet&quot;, href=&quot;//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css&quot;)
+  body
+    div.container(style=&quot;max-width: 800px;&quot;)
+      h1 My sample app
+      block content
+
+      footer(style=&quot;text-align:center;&quot;)
+        p Copyright © MyApp
+</code></pre>
+<p> </p>
+<pre><code>extends layout
+
+block content
+  p Hello again World.
+  p The current date is: #{date}
+  p.
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</code></pre>
+<p> </p>
+<pre><code>extends layout
+</code></pre>
+<pre><code>block content
+  p Happy to see you again, #{name} !
+  p I'm happy to show your reversed name: &lt;strong&gt;#{reversedName}&lt;/strong&gt;!
+</code></pre>
+<p>You will now get the following page:</p>
+<p>For <a href="http://localhost:3333">http://localhost:3333</a>:</p>
+<p><img src="/assets/blog/20131118/express-jade-first-app-screenshot_step2.png" alt="Hello World screenshot 2"></p>
+<p>For <a href="http://localhost:3333?name=Vincent">http://localhost:3333?name=Vincent</a></p>
+<p><img src="/assets/blog/20131118/express-jade-first-app-screenshot_step2_bis.png" alt="Hello Vincent screenshot 2"></p>
+<h1>Going further</h1>
+<p>As you can see, setting up a webapp using node, express and jade is really quick and easy. From this point, it is possible to create a website to test any web feature you may have to experiment.</p>
+<p>Obviously, this post described a really basic example. There is so much more to see and I would start with:</p>
+<ul>
+<li>Diving a little deeper in Jade syntax,</li>
+<li>Getting a look at Stylus which is the Jade equivalent for CSS</li>
+<li>Adding database support to our express app</li>
+<li>Handling the errors in express</li>
+<li>Etc.</li>
+</ul>
+<p><a href="http://github.com/vdurmont/express-jade-example" class="btn btn-primary">Download the code of this example</a></p>
+
+
+    </div>
+  </body>
+</html>

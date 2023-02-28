@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>Vincent Durmont</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="/assets/css/vdurmont.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/assets/css/prism-hopscotch.css"
+    />
+  </head>
+  <body>
+    <div class="page">
+      <h1 class="title"><a href="/">Vincent Durmont</a></h1>
+      
+<p><a href="/">&laquo; Back</a></p>
+
+<p class="blog-date">January 7, 2014</p>
+<h1 class="blog-title">APIPixie v0.1 released on github</h1>
+<p>In the last few months, I often connected my Java applications to remote REST APIs: Facebook Graph API, private servers, Twitter API, etc. Each time I have to write a lot of boilerplate code to build the requests, handle the errors, map the responses to my own Java objects, etc.</p>
+<p>That is the reason why I worked as a side project on <a href="https://github.com/vdurmont/apipixie">APIPixie</a>. <strong>APIPixie</strong> is a Java library which enables you to set up a communication with a distant REST API in minutes.</p>
+<!--more-->
+<h1>How to use it?</h1>
+<p>After including the library in your project, you just have to annotate your model with <code>@APIEntity</code> and <code>@APIId</code>:</p>
+<p>@APIEntity
+public class Message {
+private Long id;
+private String text;</p>
+<p>// Getters and setters
+}</p>
+<p>You can then directly connect to the distant API!</p>
+<p>// Create an APIPixie instance
+APIPixie pixie = new APIPixie(&quot;http://api.mydistantservice.com&quot;);</p>
+<p>// Retrieve an APIService for your object
+APIService<Message> msgService = pixie.getService(Message.class);</p>
+<p>// Start communicating with the distant API
+Message msg = msgService.get(42L);</p>
+<p>// Now do stuff with the object!
+String text = msg.getText();</p>
+<p>That's it! You just saved a precious time :)</p>
+<p>You can find more information and code snippets on <a href="https://github.com/vdurmont/apipixie">the Github project</a>.</p>
+<h1>Coming soon</h1>
+<p>First of all, I will soon publish this library on Maven Central Repository, that'll be easier to use.</p>
+<p>Then I still have a lot to do to make APIPixie an easier to use library: improve the doc, add some examples, handle the specific date formats, enable the developper to use different names for its model and the distant resource, etc.</p>
+<p>Finally, I'd love to hear your feedback on <a href="https://github.com/vdurmont/apipixie">the Github project</a> on on <a href="http://twitter.com/Dvins">Twitter</a>. You can also contribute to the project if you are interested in using it!</p>
+<p><strong>APIPixie: <a href="https://github.com/vdurmont/apipixie">https://github.com/vdurmont/apipixie</a></strong></p>
+
+
+    </div>
+  </body>
+</html>

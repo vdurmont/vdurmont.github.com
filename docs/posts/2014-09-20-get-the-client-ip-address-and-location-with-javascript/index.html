@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>Vincent Durmont</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="/assets/css/vdurmont.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/assets/css/prism-hopscotch.css"
+    />
+  </head>
+  <body>
+    <div class="page">
+      <h1 class="title"><a href="/">Vincent Durmont</a></h1>
+      
+<p><a href="/">&laquo; Back</a></p>
+
+<p class="blog-date">September 20, 2014</p>
+<h1 class="blog-title">Get the client IP address and location with Javascript</h1>
+<p>In one of my projects, I needed a reliable way to get a visitor's IP address and his location in Javascript, without a server. There is a wonderful <a href="http://stackoverflow.com/questions/391979/get-client-ip-using-just-javascript">thread</a> on StackOverflow which gives a lot of solutions but when I tried them, they were either not working (400/500 errors) or not returning the data I needed.</p>
+<p>So I decided it would be fun to write a small webservice to do just that: <a href="http://userinfo.io">http://userinfo.io</a>.</p>
+<!--more-->
+<p>It's really simple to use: get the library from <a href="http://github.com/vdurmont/userinfo-js">Github</a>, insert it in your code and call the method:</p>
+<p>UserInfo.getInfo(function(data, err) {
+if (err) {
+// Do something with the error
+} else {
+// Do something with the data
+}
+});</p>
+<p>Check it out on <a href="http://github.com/vdurmont/userinfo-js">Github</a> and do not hesitate to send me your remarks!</p>
+
+
+    </div>
+  </body>
+</html>

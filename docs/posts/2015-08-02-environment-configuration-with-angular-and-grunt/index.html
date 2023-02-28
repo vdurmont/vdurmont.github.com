@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>Vincent Durmont</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="/assets/css/vdurmont.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/assets/css/prism-hopscotch.css"
+    />
+  </head>
+  <body>
+    <div class="page">
+      <h1 class="title"><a href="/">Vincent Durmont</a></h1>
+      
+<p><a href="/">&laquo; Back</a></p>
+
+<p class="blog-date">August 2, 2015</p>
+<h1 class="blog-title">Environment configuration with Angular and Grunt</h1>
+<p>When I write an Angular application, I usually create a <em>constant</em> <a href="https://docs.angularjs.org/api/ng/type/angular.Module">module</a> to store my environment variables:</p>
+<p>angular.module(&quot;myApp&quot;).constant(&quot;Config&quot;, {
+API_URL: &quot;http://localhost:8080/&quot;,
+GITHUB_CLIENT_ID: &quot;xxxxxxxxxxxxxxx&quot;,
+...
+});</p>
+<p>I can then inject my config anywhere in the application and use those variables.</p>
+<p>These variables can change based on where the app is deployed and I needed a simple way to define several environments. Since I use <a href="http://gruntjs.com/">Grunt</a> to build, test and deploy my javascript apps, I wanted to find something that would be seamlessly integrated in my build process.</p>
+<!--more-->
+<p>In this post I will give you an easy way to achieve this, using <a href="https://github.com/outaTiME/grunt-replace">grunt-replace</a>.</p>
+<h2>Angular constant module</h2>
+<p>Modify the values by putting <code>@@</code> followed by the key name.</p>
+<p>angular.module(&quot;myApp&quot;).constant(&quot;Config&quot;, {
+API_URL: &quot;@@API_URL&quot;,
+GITHUB_CLIENT_ID: &quot;@@GITHUB_CLIENT_ID&quot;,
+...
+});</p>
+<h2>Create a config file for each environment</h2>
+<p>For example, if I have a <code>development</code> and a <code>production</code> environment:</p>
+<p><strong>./src/config/development.json</strong></p>
+<p>{
+API_URL: &quot;http://localhost:8080/&quot;,
+GITHUB_CLIENT_ID: &quot;xxxxxxxxxxxxxxx&quot;,
+...
+}</p>
+<p><strong>./src/config/production.json</strong></p>
+<p>{
+API_URL: &quot;http://api.myapp.com/&quot;,
+GITHUB_CLIENT_ID: &quot;yyyyyyyyyyyyyyy&quot;,
+...
+}</p>
+<h2>Add <code>grunt-replace</code> to your Gruntfile</h2>
+<p>Here are the interesting parts of the <code>Gruntfile.js</code>:</p>
+<p>module.exports = function (grunt) {
+// Method used to generate a config environment
+var getConfig = function (configName) {
+return {
+options: {
+patterns: [{
+json: grunt.file.readJSON(&quot;./src/config/&quot; + configName + &quot;.json&quot;)
+}]
+},
+files: [{
+expand: true,
+flatten: true,
+// Here &quot;dist/js/app.min.js&quot; is a minified script with my whole application
+src: [&quot;dist/js/app.min.js&quot;],
+dest: &quot;dist/js/&quot;
+}]
+};
+};</p>
+<p>grunt.initConfig({
+// Config...</p>
+<p>// Replace the configuration according to the profile
+replace: {
+development: getConfig(&quot;development&quot;),
+production: getConfig(&quot;production&quot;)
+},</p>
+<p>// Config...
+});</p>
+<p>// Load the NPM tasks
+grunt.loadNpmTasks(&quot;grunt-replace&quot;);
+// ...</p>
+<p>// Register your tasks
+grunt.registerTask(&quot;default&quot;, [..., &quot;replace:development&quot;, ...]);
+grunt.registerTask(&quot;production&quot;, [..., &quot;replace:production&quot;, ...]);
+};</p>
+<h2>Run!</h2>
+<p>When you will run <code>grunt</code>, the <code>replace:development</code> task will be used and all your keys will be replaced by the values in <code>development.json</code>. The same will happen for <code>replace:production</code> or any other profile you will have defined.</p>
+
+
+    </div>
+  </body>
+</html>

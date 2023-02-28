@@ -1,8 +1,6 @@
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 
 module.exports = function (eleventyConfig) {
-  // Copy `css/fonts/` to `_site/css/fonts`
-  // Keeps the same directory structure.
   eleventyConfig.addPassthroughCopy("assets");
   eleventyConfig.addWatchTarget("assets/css/");
 
@@ -25,4 +23,10 @@ module.exports = function (eleventyConfig) {
       timeZone: "UTC",
     });
   });
+
+  return {
+    dir: {
+      output: "docs",
+    },
+  };
 };

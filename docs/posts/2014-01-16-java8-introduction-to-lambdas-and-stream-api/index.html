@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>Vincent Durmont</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="/assets/css/vdurmont.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/assets/css/prism-hopscotch.css"
+    />
+  </head>
+  <body>
+    <div class="page">
+      <h1 class="title"><a href="/">Vincent Durmont</a></h1>
+      
+<p><a href="/">&laquo; Back</a></p>
+
+<p class="blog-date">January 16, 2014</p>
+<h1 class="blog-title">Java8 – Introduction to Lambdas and Stream API</h1>
+<p>Yesterday, I attended an awesome conference at the <a href="http://toulousejug.org/">Toulouse JUG [FR]</a> (an association of Java-lovers in the city of Toulouse, see <a href="https://www.java.net/jugs/java-user-groups">Java User Group</a>).</p>
+<p>The talk was given by <a href="http://twitter.com/josepaumard">Jose Paumard</a>. The subject was Java 8 and more precisely, the Lambdas, the Stream API and the impact on the use of the Collection API. Here are the main points I remembered from this talk.</p>
+<!--more-->
+<p><img src="/assets/blog/20140116/java8-takeout-from-toulousejug-photo.jpg" alt="Toulouse JUG"></p>
+<p>You can find the whole presentation in french <a href="http://fr.slideshare.net/jpaumard/jdk-8-lambdas-streams-collectos-bretagne-tour">here</a>.</p>
+<h1>Lambdas</h1>
+<p>The lambdas are a clear an concise way to represent a mono-method interface. Our code will be shorter and easier to read so we will save time and money! Let's take a simple example. I have a <code>Vehicle</code> which has a number of wheels.</p>
+<p>public class Vehicle {
+private Integer numWheels;</p>
+<p>// Constructor, Getters &amp; Setters
+}</p>
+<p>I want to sort a list of vehicles and write a comparator:</p>
+<p>List<Vehicle> vehicles = ....;</p>
+<p>Collections.sort(
+vehicles,
+new Comparator<Vehicle>() {
+@Override
+public int compare(Vehicle v1, Vehicle v2) {
+return v1.getNumWheels().compareTo(o2.getNumWheels());
+}
+}
+);</p>
+<p>It works but it's a lot of code for a small business logic... Here is how it can be written with lambdas:</p>
+<p>List<Vehicle> vehicles = ....;</p>
+<p>Collections.sort(
+vehicles,
+(Vehicle v1, Vehicle v2) -&gt; v1.getgetNumWheels().compareTo(o2.getNumWheels());
+);</p>
+<p>// Or even shorter:</p>
+<p>Collections.sort(
+vehicles,
+v1, v2 -&gt; v1.getgetNumWheels().compareTo(o2.getNumWheels());
+);</p>
+<p>It is shorter, as understandable as the Java 7 version and more readable.</p>
+<h1>Streams</h1>
+<p>If you program in Java, you make at least a daily use of the <code>Collection API</code> which contains the lists, the sets, the maps and all their implementations.</p>
+<p>With the brand new <strong>Stream API</strong>, we will be able to change the way we usually go throught Collections in order to simplify the code, <strong>parallelize</strong> our algorithms and adapt to other data sources (sockets, databases, etc.). Let's take an example.</p>
+<p>We have a list of <code>Vehicle</code>. Each <code>Vehicle</code> can transport a number of passengers and has a number of wheels.</p>
+<p>public class Vehicle {
+private Integer numPassengers;
+private Integer numWheels;</p>
+<p>// Constructor, Getters &amp; Setters
+}</p>
+<p>We want to get the sum of the passengers that we can transport with the vehicles which have at least 1 wheel. The classic method would be:</p>
+<p>List<Vehicle> vehicles = ....;
+int sum = 0;
+for (Vehicle vehicle : vehicles) {
+if (vehicle.getNumWheels() &gt; 0) {
+sum += vehicle.getNumPassengers();
+}
+}</p>
+<p>But we can do better! This process can be modelized with the <a href="http://en.wikipedia.org/wiki/MapReduce">Map-Filter-Reduce pattern</a>.</p>
+<p>The <code>Filter</code> will determine if the <code>Vehicle</code> should be excluded or not, the <code>Mapper</code> will extract from a <code>Vehicle</code> its number of passenger (an <code>Integer</code>) and the <code>Reducer</code> will perform the sum (important: <code>Red(Red(a, b), c) = Red(a, Red(b, c))</code>, this will enable us to crawl our collection iteratively).</p>
+<p>Let's write it with interfaces:</p>
+<p>public interface Mapper&lt;T, K&gt; {
+public K map(T t);
+}</p>
+<p>public interface Filter<T> {
+public boolean filter(T t);
+}</p>
+<p>public interface Reducer<K> {
+public K map(K t1, K t2);
+}</p>
+<p>And implement our example with the Stream API:</p>
+<p>List<Vehicle> vehicles = ....; // Not null and not empty :)</p>
+<p>Integer sum =
+vehicles.stream() // We create a stream on the collection
+// Only keep when 1 wheel or more
+.filter(v -&gt; v.getNumWheels() &gt; 0)
+// Retrieve number of passengers
+.map(v -&gt; v.getNumPassengers())
+// We add the passengers of each couple of vehicles
+.reduce(v1, v2 -&gt; v1.getNumPassengers() + v2.getNumPassengers());</p>
+<p>It is WAAAAY more elegant than our loop and it has an enormous advantage: the Java 7 example tells exactly to the compiler <em>how</em> the algorithm should be executed. Here, in Java 8, I only specify <em>what</em> I want to do and the compiler is free to implement it in its own way. By the way, the last line could be replaced by a built-in method: <code>.sum()</code> :)</p>
+<p>With a <code>Reducer</code> which respects the previous formula (which is associative and commutative), we can go through our streams in any order... so we can parallelize our code!</p>
+<p>vehicles.stream().parallel() 			// The JVM handles the rest!
+.filter(v -&gt; v.getNumWheels() &gt; 0)
+.map(v -&gt; v.getNumPassengers())
+.reduce(v1, v2 -&gt; v1.getNumPassengers() + v2.getNumPassengers());</p>
+<p>Simple, isn't it?</p>
+<p>There are a lot of operation for each category which are already included in the JDK, for example: <code>collect</code> which retrieve the results in a collection, <code>sum</code>, <code>min</code>, <code>max</code>, etc.</p>
+<h1>Conclusion</h1>
+<p>During the conference, we talked about a lot of other things such as performance, contention points in the parallelization and Jose gave us lots of interesting examples. I think there is a lot to learn in order to master Java 8 but the challenge seems exciting!</p>
+<p>It is the biggest modification of the way we handle the collections since the creation of the Collection API 15 years ago so I expect a lot of bugs, training and hard work to handle this properly :)</p>
+<p>I will soon write new posts on Java 8 since there are a lot of subjects to talk about: default implementations in interfaces (multiple inheritance?), other formats of lambda expressions, etc.</p>
+<p>Did you already try the Java 8 beta?</p>
+
+
+    </div>
+  </body>
+</html>

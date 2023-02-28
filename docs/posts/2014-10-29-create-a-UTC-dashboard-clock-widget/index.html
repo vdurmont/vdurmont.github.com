@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>Vincent Durmont</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="/assets/css/vdurmont.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/assets/css/prism-hopscotch.css"
+    />
+  </head>
+  <body>
+    <div class="page">
+      <h1 class="title"><a href="/">Vincent Durmont</a></h1>
+      
+<p><a href="/">&laquo; Back</a></p>
+
+<p class="blog-date">October 29, 2014</p>
+<h1 class="blog-title">Create a UTC dashboard clock widget on your mac</h1>
+<p>Since I moved to the US, I'm constantly checking the time it is around the world: sometimes in France to contact my friends, sometimes in New York where some coworkers are, etc. The thing I need the most is the UTC time. All our database and deployment timestamps are UTC and I don't really enjoy the mental gymnastics I have to perform to get the right time :)</p>
+<p><img src="/assets/blog/20141029/utc-clock-widget.png" alt="My dashboard clock widgets"></p>
+<p>The Mac dashboard doesn't provide a UTC clock widget so I decided to create one!</p>
+<!--more-->
+<p>Open a Terminal on your Mac and go to the dashboard widgets directory:</p>
+<p>cd /Library/Widgets</p>
+<p>Locate the &quot;World Clock&quot; widget and explore the package:</p>
+<p>cd World\ Clock.wdgt</p>
+<p>Open the javascript file with your favorite editor:</p>
+<p>subl WorldClock.js</p>
+<p>Locate the &quot;Europe&quot; line (should be around line 48) and add an entry for GMT/UTC:</p>
+<p>...
+var Europe = [
+{city:'GMT/UTC', offset:0, timezone:'UTC', id:&quot;2647937&quot;},
+{city:'Amsterdam', offset:120, timezone:'Europe/Amsterdam', id:&quot;2759794&quot;},
+...</p>
+<p>Save the file and open the dashboard. Add a clock widget and you should now have the option for a GMT/UTC city :)</p>
+<p><img src="/assets/blog/20141029/utc-clock-widget-option.png" alt="UTC clock widget option"></p>
+
+
+    </div>
+  </body>
+</html>

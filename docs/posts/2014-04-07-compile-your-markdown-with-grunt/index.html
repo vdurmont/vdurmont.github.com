@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>Vincent Durmont</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="/assets/css/vdurmont.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/assets/css/prism-hopscotch.css"
+    />
+  </head>
+  <body>
+    <div class="page">
+      <h1 class="title"><a href="/">Vincent Durmont</a></h1>
+      
+<p><a href="/">&laquo; Back</a></p>
+
+<p class="blog-date">April 7, 2014</p>
+<h1 class="blog-title">Compile your Markdown with Grunt</h1>
+<p>These days, I spend a lot of time writing documentation and procedures in order to share my knowledge of Ubleam's system and help the team handling the servers when my contract will be over.</p>
+<p>I decided to use <strong>markdown</strong> since I think the syntax is really easy to learn (anyone will be able to edit my work) and it compiles to HTML (providing a good way to visualize the content).</p>
+<p>The drawback is that even if a lot of text editors handle the markdown compilation, I would have to make sure that my HTML files were updated each time I made a modification in a markdown.</p>
+<p>Then I discovered <a href="https://github.com/treasonx/grunt-markdown">grunt-markdown</a>.</p>
+<!--more-->
+<p><em>grunt-markdown</em> is a lightweight <a href="http://gruntjs.com/">Grunt</a> module that enables you to compile markdown to HTML.</p>
+<p>My file structure looks like it:</p>
+<p>./
+Gruntfile.js
+package.json
+file1.md
+file2.md
+file3.md
+...
+html/
+file1.html
+file2.html
+file3.html
+...</p>
+<p>The <code>package.json</code> is:</p>
+<p>{
+&quot;name&quot;: &quot;mydocumentation&quot;,
+&quot;private&quot;: true,
+&quot;version&quot;: &quot;0.0.1&quot;,
+&quot;description&quot;: &quot;My documentation.&quot;,
+&quot;author&quot;: &quot;Vincent DURMONT <a href="mailto:vdurmont@gmail.com">vdurmont@gmail.com</a>&quot;,
+&quot;devDependencies&quot;: {
+&quot;grunt&quot;: &quot;0.4.4&quot;,
+&quot;grunt-markdown&quot;: &quot;0.5.0&quot;
+}
+}</p>
+<p>Don't forget to run <code>npm install</code> in order to retrieve the dependencies.</p>
+<p>Then, I simply defined a task in the <code>Gruntfile.js</code>:</p>
+<p>module.exports = function (grunt) {
+grunt.initConfig({
+pkg: grunt.file.readJSON('package.json'),
+markdown: {
+all: {
+files: [{
+expand: true,
+src: './*.md',
+dest: 'html/',
+ext: '.html'
+}]
+}
+}
+});</p>
+<p>grunt.loadNpmTasks('grunt-markdown');
+grunt.registerTask('default', ['markdown:all']);
+};</p>
+<p>Finally, a simple:</p>
+<p>grunt</p>
+<p>in the root directory will generate all my HTML files. Easy!</p>
+<p>Check out <a href="https://github.com/treasonx/grunt-markdown">grunt-markdown on Github</a>.</p>
+
+
+    </div>
+  </body>
+</html>

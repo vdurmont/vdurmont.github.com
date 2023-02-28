@@ -1,0 +1,57 @@
+body {
+  background-color: #f4f4f4;
+  color: #000000;
+  font-family: "Montserrat";
+}
+
+a {
+  color: #ea3323;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+h2 {
+  margin: 20px 0;
+}
+
+.blog-date {
+  font-style: italic;
+  list-style: none;
+  margin-bottom: 0;
+}
+
+.blog-item {
+  list-style: none;
+  margin: 8px 0;
+}
+
+.blog-title {
+  margin-top: 0;
+}
+
+.page {
+  margin: auto;
+  max-width: 800px;
+  padding: 56px;
+}
+
+.profile-pic {
+  max-width: 200px;
+}
+
+.subtitle {
+  margin: 0;
+}
+
+.title {
+  font-size: 50px;
+  margin: 0 0 20px 0;
+}
+
+.title a {
+  color: #000000;
+  text-decoration: none;
+}
