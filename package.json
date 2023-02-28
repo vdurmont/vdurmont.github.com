@@ -1,0 +1,24 @@
+{
+  "name": "vdurmont.github.com",
+  "version": "1.0.0",
+  "description": "vdurmont.github.com ===================",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vdurmont/vdurmont.github.com.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vdurmont/vdurmont.github.com/issues"
+  },
+  "homepage": "https://github.com/vdurmont/vdurmont.github.com#readme",
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.0",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^4.2.0"
+  }
+}

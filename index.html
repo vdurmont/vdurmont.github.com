@@ -1,29 +1,46 @@
 ---
-layout: default
-title: Home
+layout: page.html
 ---
 
-<h1 class="page-title">Vincent Durmont</h1>
-
-<p class="home-emojis">🇫🇷🌉💻👨‍👩‍👦</p>
-
+<img
+	class="profile-pic"
+	src="/assets/vincent_durmont.png"
+	alt="Vincent Durmont in 2022"
+/>
+<h2>About me</h2>
+<p>
+	I was born in France and I currently live in the San Francisco Bay Area with
+	my family.
+</p>
+<p>
+	I'm a full stack developer, which means I know just enough to be dangerous
+	everywhere.
+</p>
+<p>
+	In the past few years, I have been enjoying the fintech world and the crypto
+	industry, first at
+	<a href="https://about.fb.com/news/2020/05/welcome-to-novi/">Novi</a>, and now
+	at <a href="https://www.lightspark.com/">Lightspark</a>.
+</p>
+<p>
+	Before that, I spent a few years at
+	<a href="https://www.facebook.com">Facebook</a>, working on their internal
+	tools, both as an IC and a manager. I also worked at/founded several startups,
+	including <a href="https://www.crunchbase.com/organization/mindie">Mindie</a>,
+	<a href="https://www.ubleam.com">Ubleam</a>, and
+	<a href="https://www.crunchbase.com/organization/plixee">Plixee</a>.
+</p>
+<p>
+	Get in touch on
+	<a href="https://twitter.com/vdurmont">Twitter</a> or via
+	<a href="mailto:vdurmont@gmail.com">email</a>.
+</p>
+<h2>Posts</h2>
 <ul>
-	<li>I live in the San Francisco Bay Area.</li>
-	<li>I am a <b>Software Engineer Manager</b> at <b>Facebook</b> where I lead a team focused on building awesome <b>internal tools</b> to enable Facebook employees to communicate efficiently, develop seamlessly, and build amazing products.</li>
-	<li>I enjoy coding <b>fullstack</b>, with a slight preference for frontend development.</li>
+	{%- for post in collections.post reversed -%}
+	<li class="blog-item">
+		{{ post.data.date | asPostItemDate }}&nbsp;&raquo;&nbsp;
+		<a href="{{ post.url }}">{{ post.data.title }}</a>
+	</li>
+	{%- endfor -%}
 </ul>
-
-<h1 class="page-title secondary-title">Blog posts</h1>
-
-{% for post in site.posts %}
-		<article class="post-container">
-			<header>
-				<h1 class="page-title"><a href="{{ post.url }}">{{ post.title }}</a></h1>
-				<p class="page-subtitle">{{ post.date | date:"%B %d, %Y" }}</p>
-			</header>
-			<div class="post-excerpt">
-				{{ post.excerpt }}
-				<a href="{{ post.url }}">Read more...</a>
-			</div>
-		</article>
-{% endfor %}

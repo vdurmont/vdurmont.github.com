@@ -1,1 +1,0 @@
-bundle exec jekyll --watch --drafts serve
