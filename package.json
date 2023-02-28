@@ -4,7 +4,8 @@
   "description": "vdurmont.github.com ===================",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "eleventy",
+    "serve": "npx eleventy --serve"
   },
   "repository": {
     "type": "git",

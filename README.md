@@ -13,5 +13,8 @@ npm install
 Run:
 
 ```bash
-npx @11ty/eleventy --serve --port=8081
+npm run serve
+
+# Or:
+npx @11ty/eleventy --serve
 ```
