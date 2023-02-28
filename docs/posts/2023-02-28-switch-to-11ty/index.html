@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>Vincent Durmont</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="/assets/css/vdurmont.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/assets/css/prism-hopscotch.css"
+    />
+  </head>
+  <body>
+    <div class="page">
+      <h1 class="title"><a href="/">Vincent Durmont</a></h1>
+      
+<p><a href="/">&laquo; Back</a></p>
+
+<p class="blog-date">February 28, 2023</p>
+<h1 class="blog-title">Switch to 11ty</h1>
+<p>After years without publishing anything here, my recent adventures at <a href="https://www.lightspark.com">Lightspark</a> made me want to write some things again.</p>
+<p>Every time I want to write, the procrastinating part of my brain takes over and I <em>need</em> to cleanup whatever blog software I'm using. Initially, I managed to resist it, but my previous engine, Jekyll was completely outdated. Nothing could be built anymore, upgrading was a super big pain because none of the plugins I used we working and I don't <s>like</s> know Ruby.</p>
+<p>So instead of doing something simple and just write some content, I started the far more attractive complex task of rebuilding this website. After some research, I found <a href="https://www.11ty.dev/">this new fancy 11ty (&quot;eleventy&quot;) framework</a> that is supposed to be a replacement for Jekyll in javascript. I like Javascript, so I went for it.</p>
+<p>And... it was really easy. I only spent a couple of hours on it when I was fully prepared to stay up all night battling the Javascript gods.</p>
+<p>10/10. Strongly recommend.</p>
+<p>The only tricky part was to get it to publish properly to Github Pages. I had to change the output directory in the <code>.eleventy.js</code> config file to:</p>
+<pre class="language-js"><code class="language-js">module<span class="token punctuation">.</span><span class="token function-variable function">exports</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">eleventyConfig</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token comment">// Other stuff</span><br><br>  <span class="token keyword">return</span> <span class="token punctuation">{</span><br>    <span class="token literal-property property">dir</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>      <span class="token literal-property property">output</span><span class="token operator">:</span> <span class="token string">"docs"</span><span class="token punctuation">,</span><br>    <span class="token punctuation">}</span><span class="token punctuation">,</span><br>  <span class="token punctuation">}</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<p>Then in my Github Pages config, I went to:</p>
+<pre class="language-txt"><code class="language-txt">https://github.com/{organization}/{repository}/settings/pages</code></pre>
+<p>and changed the directory to <code>/docs</code>. Github is pretty limited and only accepts <code>/</code> or <code>/docs</code> as a directory to serve pages content 🤷‍♂️</p>
+<p>Hopefully, I'll be able to write something soon. But not today. Today, I rebuilt my website.</p>
+
+
+    </div>
+  </body>
+</html>
