@@ -1,5 +1,5 @@
 ---
-tags: post, graphql
+tags: post
 layout: post
 title: GraphQL — Use edges, not IDs
 date: 2023-03-12
