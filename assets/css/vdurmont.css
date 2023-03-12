@@ -35,7 +35,19 @@ h2 {
 .page {
   margin: auto;
   max-width: 800px;
-  padding: 56px;
+  padding: 56px 10px;
+}
+
+@media (min-width: 600px) {
+  .page {
+    padding: 56px 32px;
+  }
+}
+
+@media (min-width: 900px) {
+  .page {
+    padding: 56px;
+  }
 }
 
 .profile-pic {
