@@ -24,6 +24,7 @@
 
 <p class="blog-date">March 12, 2023</p>
 <h1 class="blog-title">GraphQL — Use edges, not IDs</h1>
+<p><em>I write a series of posts about GraphQL API design. Find the full list <a href="/posts/2023-03-11-graphql-api-design">here</a>!</em></p>
 <h1>TL;DR</h1>
 <p>Never expose a field with another entity ID, instead, you should expose an edge to that other entity and let the client crawl the graph.</p>
 <pre class="language-graphql"><code class="language-graphql"><span class="token keyword">type</span> <span class="token class-name">Transaction</span> <span class="token punctuation">{</span><br>  <span class="token attr-name">id</span><span class="token punctuation">:</span> <span class="token scalar">ID</span><span class="token operator">!</span><br>  <span class="token attr-name">amount</span><span class="token punctuation">:</span> <span class="token scalar">Int</span><span class="token operator">!</span><br>  <span class="token attr-name">sender_id</span><span class="token punctuation">:</span> <span class="token scalar">ID</span><span class="token operator">!</span> <span class="token comment"># BAD!</span><br>  <span class="token attr-name">sender</span><span class="token punctuation">:</span> <span class="token class-name">User</span><span class="token operator">!</span> <span class="token comment"># GOOD!</span><br><span class="token punctuation">}</span></code></pre>

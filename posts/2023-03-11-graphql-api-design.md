@@ -11,11 +11,10 @@ I developed some expertise in GraphQL API design over the years and I found myse
 
 # Posts about GraphQL
 
-This post will serve as table of contents for all the articles I'll write about GraphQL API design. Stay tuned!
+This post serves as table of contents for all the articles I'll write about GraphQL API design.
 
-- Coming...
-- Soon...
-- Here!
+- [Use edges, not IDs](/posts/2023-03-12-graphql-use-edges-not-ids)
+- More to come soon, stay tuned!
 
 # How I learned GraphQL?
 

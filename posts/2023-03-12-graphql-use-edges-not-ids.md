@@ -1,9 +1,11 @@
 ---
-tags: post
+tags: post, graphql
 layout: post
 title: GraphQL — Use edges, not IDs
 date: 2023-03-12
 ---
+
+_I write a series of posts about GraphQL API design. Find the full list [here](/posts/2023-03-11-graphql-api-design)!_
 
 # TL;DR
 
