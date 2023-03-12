@@ -36,7 +36,7 @@ layout: page.html
 	<a href="mailto:vdurmont@gmail.com">email</a>.
 </p>
 <h2>Posts</h2>
-<ul>
+<ul class="blog-list">
 	{%- for post in collections.post reversed -%}
 	<li class="blog-item">
 		{{ post.data.date | asPostItemDate }}&nbsp;&raquo;&nbsp;

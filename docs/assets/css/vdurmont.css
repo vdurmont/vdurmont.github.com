@@ -23,9 +23,25 @@ h2 {
   margin-bottom: 0;
 }
 
+.blog-list {
+  padding-left: 0;
+}
+
+@media (min-width: 600px) {
+  .blog-list {
+    padding-left: 40px;
+  }
+}
+
 .blog-item {
   list-style: none;
-  margin: 8px 0;
+  padding: 12px 0;
+}
+
+@media (min-width: 600px) {
+  .blog-item {
+    padding: 8px 0;
+  }
 }
 
 .blog-title {
