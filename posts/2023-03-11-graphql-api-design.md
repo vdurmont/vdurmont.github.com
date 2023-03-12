@@ -9,7 +9,7 @@ I have been working with GraphQL and REST for years and both are awesome ways to
 
 I developed some expertise in GraphQL API design over the years and I found myself explaining a lot of principles and giving a lot of advice to my teammates. I thought it might be interesting to share those more broadly 🙃
 
-## Posts about GraphQL
+# Posts about GraphQL
 
 This post will serve as table of contents for all the articles I'll write about GraphQL API design. Stay tuned!
 
@@ -17,7 +17,7 @@ This post will serve as table of contents for all the articles I'll write about 
 - Soon...
 - Here!
 
-## How I learned GraphQL?
+# How I learned GraphQL?
 
 The beginning of my career was extremely REST heavy. I always had a knack for API design, one of my favorite activities is to connect systems together in a scalable way. I built a lot of REST APIs and when I moved to San Francisco, I joined API design groups and meetups... the dream!
 
