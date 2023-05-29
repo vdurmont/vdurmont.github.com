@@ -18,3 +18,9 @@ npm run serve
 # Or:
 npx @11ty/eleventy --serve
 ```
+
+Open:
+
+```
+http://127.0.0.1:8080/
+```
