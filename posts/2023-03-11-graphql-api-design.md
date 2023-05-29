@@ -14,6 +14,7 @@ I developed some expertise in GraphQL API design over the years and I found myse
 This post serves as table of contents for all the articles I'll write about GraphQL API design.
 
 - [Use edges, not IDs](/posts/2023-03-12-graphql-use-edges-not-ids)
+- [Default to optional fields](/posts/2023-05-29-graphql-default-to-optional-fields)
 - More to come soon, stay tuned!
 
 # How I learned GraphQL?
