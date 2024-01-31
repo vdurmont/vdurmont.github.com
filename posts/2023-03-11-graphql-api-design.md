@@ -15,6 +15,7 @@ This post serves as table of contents for all the articles I'll write about Grap
 
 - [Use edges, not IDs](/posts/2023-03-12-graphql-use-edges-not-ids)
 - [Default to optional fields](/posts/2023-05-29-graphql-default-to-optional-fields)
+- [Use Connections, not Lists](/posts/2024-01-30-use-connections-not-lists)
 - More to come soon, stay tuned!
 
 # How I learned GraphQL?
