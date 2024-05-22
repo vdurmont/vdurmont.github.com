@@ -3,44 +3,45 @@ layout: page.html
 ---
 
 <img
-	class="profile-pic"
-	src="/assets/vincent_durmont.png"
-	alt="Vincent Durmont in 2022"
+  class="profile-pic"
+  src="/assets/vincent_durmont.png"
+  alt="Vincent Durmont in 2022"
 />
 <h2>About me</h2>
 <p>
-	I was born in France and I currently live in Los Angeles with my family, after
-	I spent about 10 years in the San Francisco Bay Area.
+  I was born in France and I currently live in Los Angeles with my family, after
+  I spent about 10 years in the San Francisco Bay Area.
 </p>
 <p>
-	I'm a full stack developer, which means I know just enough to be dangerous
-	everywhere.
+  I'm the Head of Engineering at
+  <a href="https://www.lightspark.com/">Lightspark</a> where I lead our awesome
+  team to deliver on our mission to bring open payments to the internet. I'm
+  also a full stack developer, which means I know just enough to be dangerous
+  everywhere and break most things.
 </p>
 <p>
-	In the past few years, I have been enjoying the fintech world and the crypto
-	industry, first at
-	<a href="https://about.fb.com/news/2020/05/welcome-to-novi/">Novi</a>, and now
-	at <a href="https://www.lightspark.com/">Lightspark</a>.
+  In the past few years, I have been enjoying the fintech world and the crypto
+  industry, first at
+  <a href="https://about.fb.com/news/2020/05/welcome-to-novi/">Novi</a>, and now
+  at <a href="https://www.lightspark.com/">Lightspark</a>. Before that, I spent
+  a few years at <a href="https://www.facebook.com">Facebook</a>, working on
+  their internal tools, both as an IC and a manager. I also worked at/founded
+  several startups, including
+  <a href="https://www.crunchbase.com/organization/mindie">Mindie</a>,
+  <a href="https://www.ubleam.com">Ubleam</a>, and
+  <a href="https://www.crunchbase.com/organization/plixee">Plixee</a>.
 </p>
 <p>
-	Before that, I spent a few years at
-	<a href="https://www.facebook.com">Facebook</a>, working on their internal
-	tools, both as an IC and a manager. I also worked at/founded several startups,
-	including <a href="https://www.crunchbase.com/organization/mindie">Mindie</a>,
-	<a href="https://www.ubleam.com">Ubleam</a>, and
-	<a href="https://www.crunchbase.com/organization/plixee">Plixee</a>.
-</p>
-<p>
-	Get in touch on
-	<a href="https://twitter.com/vdurmont">Twitter</a> or via
-	<a href="mailto:vdurmont@gmail.com">email</a>.
+  Get in touch on
+  <a href="https://twitter.com/vdurmont">Twitter</a> or via
+  <a href="mailto:vdurmont@gmail.com">email</a>.
 </p>
 <h2>Posts</h2>
 <ul class="blog-list">
-	{%- for post in collections.post reversed -%}
-	<li class="blog-item">
-		{{ post.data.date | asPostItemDate }}&nbsp;&raquo;&nbsp;
-		<a href="{{ post.url }}">{{ post.data.title }}</a>
-	</li>
-	{%- endfor -%}
+  {%- for post in collections.post reversed -%}
+  <li class="blog-item">
+    {{ post.data.date | asPostItemDate }}&nbsp;&raquo;&nbsp;
+    <a href="{{ post.url }}">{{ post.data.title }}</a>
+  </li>
+  {%- endfor -%}
 </ul>
